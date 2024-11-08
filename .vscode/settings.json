@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5ef9ab40-90f2-4a75-9fe8-b3644bee791e/resourceGroups/rg-01-LyricsExtractor/providers/Microsoft.Web/sites/web-01-front",
+    "appService.deploySubpath": "."
+}
