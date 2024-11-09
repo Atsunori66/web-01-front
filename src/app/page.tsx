@@ -47,7 +47,6 @@ export default function Home() {
       setFileName(selectedFiles[0].name);
       setUploaded(true);
     }
-
     // Clear the input after selection
     // event.target.value = "";
   }
@@ -70,12 +69,6 @@ export default function Home() {
   //         body: formData,
   //       }
   //     );
-
-  //   // const postBody = { "name": "test2" }
-  //   // const res = await axios.post(
-  //   //   "/rh",
-  //   //   postBody
-  //   // )
 
   //   const data = await res.text()
   //   setMsg(data);
