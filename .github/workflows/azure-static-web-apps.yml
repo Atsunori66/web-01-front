@@ -28,7 +28,7 @@ jobs:
           ###### Repository/Build Configurations ######
           app_location: "src/app" # App source code path relative to repository root
           api_location: "" # Api source code path relative to repository root - optional
-          output_location: "" # Built app content directory, relative to app_location - optional
+          output_location: "public" # Built app content directory, relative to app_location - optional
           ###### End of Repository/Build Configurations ######
         env:
           LOGIC_APP_STANDARD_URL: ${{ secrets.LOGIC_APP_STANDARD_URL }}
