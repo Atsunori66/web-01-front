@@ -106,7 +106,7 @@ export default function Home() {
       <header className="flex gap-4 p-4">
         <Image
           className="mr-auto"
-          src="/lyrixer_logo.png"
+          src="/Lyrixer_logo.png"
           alt="lyrixer logo"
           width={120}
           height={60}
@@ -256,7 +256,7 @@ export default function Home() {
         </a>
         <a
           className="flex gap-2 hover:underline hover:underline-offset-4"
-          // href="https://linkedin.com/in/atsukisumita/"
+          href="https://linkedin.com/in/atsukisumita/"
           target="_blank"
           rel="noopener noreferrer"
         >
