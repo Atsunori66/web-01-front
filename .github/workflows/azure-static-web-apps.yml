@@ -26,9 +26,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for GitHub integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations ######
-          app_location: "/src/app" # App source code path relative to repository root
+          app_location: "/" # App source code path relative to repository root
           api_location: "" # Api source code path relative to repository root - optional
-          output_location: "" # Built app content directory, relative to app_location - optional
+          output_location: ".next" # Built app content directory, relative to app_location - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
@@ -42,4 +42,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_WATER_058da0d00 }}
           action: "close"
-          app_location: "src/app"
+          app_location: "/"
