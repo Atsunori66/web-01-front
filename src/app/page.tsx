@@ -210,7 +210,7 @@ export default function Home() {
             pointer-events-auto"
             onClick={onClick}
             disabled={!uploaded || loading}
-            >
+          >
             Extract now!
           </button>
         </div>
@@ -219,11 +219,11 @@ export default function Home() {
           <div className="pl-4 font-semibold">
             Extracted results
           </div>
-          <div className="justify-self-center break-words
-            text-wrap min-h-48 h-auto w-7/12
+          <div className="justify-self-center min-h-48 h-auto w-7/12
+            break-words text-wrap
             whitespace-pre-wrap p-2 mt-4 mx-40
-            box-border border-2 border-gray-400 border-dotted
-          ">
+            box-border border-2 border-gray-400 border-dotted"
+          >
             {
               loading == true ?
               <div className="flex justify-center" aria-label="読み込み中">
