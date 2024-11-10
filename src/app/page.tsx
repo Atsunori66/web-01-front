@@ -2,6 +2,8 @@
 // icon 透過
 // favicon 透過、ガイドライン参考
 // ファイルをアップロードするまでボタン2 は非アクティブ
+// footer プライバシーポリシー フロート
+// LinkedIn アイコン ?
 
 "use client";
 
@@ -176,7 +178,7 @@ export default function Home() {
                 Select your audio file and wait until the processing is completed.
               </li>
               <li className="pl-4 pb-4 list-disc">
-                The result may differ each time. Uploaded files will not be stored.
+                The result may differ on each run. Uploaded files will not be stored.
               </li>
             </ul>
           </div>
@@ -188,7 +190,7 @@ export default function Home() {
               <input
                 type="file"
                 name="inputFile"
-                accept=".mp3, .mp4, .m4a, .flac, .wav"
+                accept=".mp3, .m4a, .flac, .wav"
                 ref={inputFileRef}
                 className="block w-full text-sm text-slate-500
                 file:mr-4 file:py-2 file:px-4
@@ -198,7 +200,7 @@ export default function Home() {
                 hover:file:bg-blue-100"
                 onChange={onChange}
               />
-                Accepted format: mp3, mp4, m4a, flac or wav
+                Accepted format: mp3, m4a, flac or wav
             </label>
           </form>
 
@@ -218,7 +220,7 @@ export default function Home() {
             Extracted results
           </div>
           <div className="justify-self-center break-words
-            text-wrap min-h-48 h-auto w-2/3
+            text-wrap min-h-48 h-auto w-7/12
             whitespace-pre-wrap p-2 mt-4 mx-40
             box-border border-2 border-gray-400 border-dotted
           ">
