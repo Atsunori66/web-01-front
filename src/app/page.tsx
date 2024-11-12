@@ -111,10 +111,10 @@ export default function Home() {
       <header className="flex gap-4 p-4">
         <Image
           className="mr-auto"
-          src="/Lyrixer_logo_transparent.png"
+          src="/Lyrixer_logo.svg"
           alt="lyrixer logo"
-          width={140}
-          height={70}
+          width={150}
+          height={60}
         />
 
         <Menu as="div" className="place-self-center">
