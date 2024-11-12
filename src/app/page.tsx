@@ -9,9 +9,10 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { LanguageIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
+import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
-import { useTheme } from "next-themes";
+// import { LanguageIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
+// import { useTheme } from "next-themes";
 
 // デフォルトの bodyParser を無効化
 export const config = {
@@ -26,7 +27,7 @@ export default function Home() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
 
   // const inputFileNameRef = useRef<HTMLInputElement>(null);
   // const inputFileRef = useRef<File | null>(null);
@@ -80,7 +81,7 @@ export default function Home() {
   // };
 
   async function onClick() {
-    if (files.length === 0) return; // Ensure there are files to upload
+    if (files.length === 0) return;
     setLoading(true);
 
     const formData = new FormData();
@@ -112,8 +113,8 @@ export default function Home() {
           className="mr-auto"
           src="/Lyrixer_logo_transparent.png"
           alt="lyrixer logo"
-          width={120}
-          height={60}
+          width={140}
+          height={70}
         />
 
         <Menu as="div" className="place-self-center">
@@ -166,7 +167,7 @@ export default function Home() {
           </MenuItems>
         </Menu>
 
-        <button className="place-self-center gap-4"
+        {/* <button className="place-self-center gap-4"
           onClick={() => setTheme(theme === "dark" ? "light" : theme === "light" ? "dark" : "system")}
         >
           {
@@ -178,7 +179,7 @@ export default function Home() {
             :
             typeof(theme)
           }
-        </button>
+        </button> */}
       </header>
 
       <main className="grid grid-rows-1 gap-6 p-6">
@@ -278,7 +279,7 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src={theme === "light" ? "/LinkedIn_black.svg" : "/LinkedIn_white.svg"}
+            src="/LinkedIn_black.svg"
             alt="File icon"
             width={24}
             height={24}
