@@ -279,10 +279,10 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src="/LinkedIn_black.svg"
+            src="/LinkedIn_logo.png"
             alt="File icon"
-            width={24}
-            height={24}
+            width={30}
+            height={20}
           />
           About the developer
         </a>
