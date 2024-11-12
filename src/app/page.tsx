@@ -2,16 +2,16 @@
 // icon 透過
 // favicon 透過、ガイドライン参考
 // ファイルをアップロードするまでボタン2 は非アクティブ
-// footer プライバシーポリシー フロート
-// LinkedIn アイコン ?
+// footer プライバシーポリシー ポップアップ
 
 "use client";
 
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { LanguageIcon, ChevronDownIcon, MoonIcon } from "@heroicons/react/20/solid";
-// import axios from "axios";
+import { LanguageIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
+
+import { useTheme } from "next-themes";
 
 // デフォルトの bodyParser を無効化
 export const config = {
@@ -21,10 +21,12 @@ export const config = {
 }
 
 const today = new Date();
+
 export default function Home() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // const inputFileNameRef = useRef<HTMLInputElement>(null);
   // const inputFileRef = useRef<File | null>(null);
@@ -108,14 +110,16 @@ export default function Home() {
       <header className="flex gap-4 p-4">
         <Image
           className="mr-auto"
-          src="/Lyrixer_logo.png"
+          src="/Lyrixer_logo_transparent.png"
           alt="lyrixer logo"
           width={120}
           height={60}
         />
 
         <Menu as="div" className="place-self-center">
-          <MenuButton className="inline-flex gap-x-1.5 rounded-md bg-white p-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <MenuButton className="inline-flex gap-x-1.5 rounded-md
+           bg-white dark:bg-black text-gray-900 dark:text-gray-50
+           p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
             <LanguageIcon aria-hidden="true" className="-mr-1 h-5 w-5"/>
             Language
             <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400"/>
@@ -123,13 +127,13 @@ export default function Home() {
 
           <MenuItems
             transition
-            className="absolute z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+            className="absolute z-10 mt-2 origin-top-right rounded-md bg-white dark:bg-black text-black dark:text-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
             >
             <div className="py-1">
               <MenuItem>
                 <a
                   href="en"
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                 >
                   English
                 </a>
@@ -137,7 +141,7 @@ export default function Home() {
               <MenuItem>
                 <a
                   href="es"
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                 >
                   Español
                 </a>
@@ -145,7 +149,7 @@ export default function Home() {
               <MenuItem>
                 <a
                   href="ja"
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                 >
                   日本語
                 </a>
@@ -153,7 +157,7 @@ export default function Home() {
               <MenuItem>
                 <a
                   href="zh"
-                  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                 >
                   中文
                 </a>
@@ -162,8 +166,18 @@ export default function Home() {
           </MenuItems>
         </Menu>
 
-        <button className="place-self-center gap-4">
-          <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-blue-700 fill-white"></MoonIcon>
+        <button className="place-self-center gap-4"
+          onClick={() => setTheme(theme === "dark" ? "light" : theme === "light" ? "dark" : "system")}
+        >
+          {
+            theme === "light" ?
+            <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-blue-700 fill-white"></MoonIcon>
+            :
+            theme === "dark" ?
+            <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-white"></SunIcon>
+            :
+            typeof(theme)
+          }
         </button>
       </header>
 
@@ -251,8 +265,8 @@ export default function Home() {
             aria-hidden
             src="https://nextjs.org/icons/file.svg"
             alt="File icon"
-            width={16}
-            height={16}
+            width={20}
+            height={20}
           />
           Privacy policy
         </a>
@@ -264,12 +278,12 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src="https://nextjs.org/icons/file.svg"
+            src={theme === "light" ? "/LinkedIn_black.svg" : "/LinkedIn_white.svg"}
             alt="File icon"
-            width={16}
-            height={16}
+            width={24}
+            height={24}
           />
-          About the developer (LinkedIn)
+          About the developer
         </a>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita
