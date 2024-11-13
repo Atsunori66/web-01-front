@@ -109,15 +109,23 @@ export default function Home() {
     <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
 
       <header className="flex gap-4 p-4">
+        <div className="flex">
         <Image
           className="mr-auto"
+          src="/Lyrixer_icon.svg"
+          alt="lyrixer logo"
+          width={40}
+          height={40}
+          />
+        <Image
           src="/Lyrixer_logo.svg"
           alt="lyrixer logo"
-          width={150}
-          height={60}
-        />
+          width={100}
+          height={40}
+          />
+        </div>
 
-        <Menu as="div" className="place-self-center">
+        <Menu as="div" className="place-self-center ml-auto">
           <MenuButton className="inline-flex gap-x-1.5 rounded-md
            bg-white dark:bg-black text-gray-900 dark:text-gray-50
            p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
@@ -188,7 +196,7 @@ export default function Home() {
             Extract lyrics from your favorite songs!
           </div>
           <div>
-            <ul className="list-inside text-base sm:text-left font-[family-name:var(--font-geist-mono)]">
+            <ul className="list-inside text-base text-left font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
                 Select your audio file and wait until the processing is completed.
               </li>
@@ -236,7 +244,7 @@ export default function Home() {
           </div>
           <div className="justify-self-center min-h-48 h-auto w-7/12
             break-words text-wrap
-            whitespace-pre-wrap p-2 mt-4 mx-40
+            whitespace-pre-wrap p-2 mt-4
             box-border border-2 border-gray-400 border-dotted"
           >
             {
@@ -257,7 +265,7 @@ export default function Home() {
       {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"> */}
       <footer className="flex gap-4 p-4 justify-center">
         <a
-          className="flex gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           // href="https://example.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -272,16 +280,16 @@ export default function Home() {
           Privacy policy
         </a>
         <a
-          className="flex gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://linkedin.com/in/atsukisumita/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
             aria-hidden
-            src="/LinkedIn_logo.png"
+            src="/LinkedIn_icon.svg"
             alt="File icon"
-            width={30}
+            width={20}
             height={20}
           />
           About the developer

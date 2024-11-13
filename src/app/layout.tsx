@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "LyriXer",
+  title: "LyriXer - Lyrics Extractor AI",
   description: "Your favorite lyrics extractor AI and it's completely free",
 };
 
