@@ -192,10 +192,10 @@ export default function Home() {
           <div>
             <ul className="list-inside text-base text-left font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
-                Select your audio file and wait until the processing is completed.
+                Select your audio file and wait while processing completes.
               </li>
               <li className="pl-4 pb-4 list-disc">
-                The result may differ on each run. Uploaded files will not be stored.
+              Results may vary with each run. Uploaded files are not stored.
               </li>
             </ul>
           </div>
@@ -217,7 +217,7 @@ export default function Home() {
                 hover:file:bg-blue-100"
                 onChange={onChange}
               />
-                Accepted format: mp3, m4a, flac or wav
+                Accepted formats: MP3, M4A, FLAC, or WAV
             </label>
           </form>
 
@@ -234,7 +234,7 @@ export default function Home() {
 
         <div>
           <div className="pl-4 font-semibold">
-            Extracted results
+            Extracted Results
           </div>
           <div className="justify-self-center min-h-56 h-auto w-full md:w-7/12
             break-words text-wrap
@@ -271,7 +271,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          (Privacy policy)
+          (Privacy Policy)
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -286,7 +286,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          About the developer
+          About the Developer
         </a>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita
