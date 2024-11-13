@@ -1,9 +1,3 @@
-// テーマカラー変更トグル
-// icon 透過
-// favicon 透過、ガイドライン参考
-// ファイルをアップロードするまでボタン2 は非アクティブ
-// footer プライバシーポリシー ポップアップ
-
 "use client";
 
 import { useState, useRef } from "react";
@@ -130,7 +124,7 @@ export default function Home() {
            bg-white dark:bg-black text-gray-900 dark:text-gray-50
            p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
             <LanguageIcon aria-hidden="true" className="-mr-1 h-5 w-5"/>
-            Language
+            (Language)
             <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400"/>
           </MenuButton>
 
@@ -250,9 +244,9 @@ export default function Home() {
             {
               loading == true ?
               <div className="flex justify-center" aria-label="読み込み中">
-                <div className="animate-ping h-1 w-1 bg-blue-400 rounded-full"></div>
-                <div className="animate-ping h-1 w-1 bg-blue-400 rounded-full mx-4"></div>
-                <div className="animate-ping h-1 w-1 bg-blue-400 rounded-full"></div>
+                <div className="animate-ping mt-5 h-1 w-1 bg-blue-400 rounded-full"></div>
+                <div className="animate-ping mt-5 h-1 w-1 bg-blue-400 rounded-full mx-4"></div>
+                <div className="animate-ping mt-5 h-1 w-1 bg-blue-400 rounded-full"></div>
               </div>
               :
               msg
@@ -266,7 +260,7 @@ export default function Home() {
       <footer className="flex gap-4 p-4 justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          // href="https://example.com/"
+          href="https://example.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -277,7 +271,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          Privacy policy
+          (Privacy policy)
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
