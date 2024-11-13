@@ -242,7 +242,7 @@ export default function Home() {
           <div className="pl-4 font-semibold">
             Extracted results
           </div>
-          <div className="justify-self-center min-h-48 h-auto w-7/12
+          <div className="justify-self-center min-h-56 h-auto w-full md:w-7/12
             break-words text-wrap
             whitespace-pre-wrap p-2 mt-4
             box-border border-2 border-gray-400 border-dotted"
