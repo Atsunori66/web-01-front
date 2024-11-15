@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
@@ -10,7 +11,7 @@ export const config = {
   api : {
     bodyParser : false
   }
-}
+};
 const today = new Date();
 
 export default function Home() {
@@ -89,10 +90,6 @@ export default function Home() {
     selectTexts = textList.textEn
   };
 
-  // const inputFileNameRef = useRef<HTMLInputElement>(null);
-  // const inputFileRef = useRef<File | null>(null);
-  // const inputFileRef = useRef<File>();
-
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string>("");
@@ -104,8 +101,6 @@ export default function Home() {
   //   setFiles([...event.target.files]);
   //   event.target.value = "";
   // }
-
-
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files || []);
@@ -147,7 +142,6 @@ export default function Home() {
     setLoading(true);
 
     const formData = new FormData();
-
     formData.append("file", files[0]);
     formData.append("fileName", fileName);
 
@@ -164,8 +158,8 @@ export default function Home() {
       }
     } finally {
       setLoading(false);
-    }
-  }
+    };
+  };
 
   return (
     <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
@@ -340,7 +334,7 @@ export default function Home() {
 
       {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"> */}
       <footer className="flex gap-4 p-4 justify-center">
-        <a
+        <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://example.com/"
           target="_blank"
@@ -354,8 +348,8 @@ export default function Home() {
             height={20}
           />
           { selectTexts.textPolicy }
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://linkedin.com/in/atsukisumita/"
           target="_blank"
@@ -369,7 +363,7 @@ export default function Home() {
             height={20}
           />
           { selectTexts.textAbout }
-        </a>
+        </Link>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita
         </div>
