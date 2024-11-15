@@ -14,13 +14,11 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.1.5",
     "axios": "^1.7.7",
-    "dotenv": "^16.4.5",
+    "form-data": "^4.0.1",
     "next": "15.0.3",
     "next-themes": "^0.4.3",
     "react": "^18",
-    "react-dom": "^18",
-    "swr": "^2.2.5",
-    "tailwindcss": "^3.4.14"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^22",
@@ -29,6 +27,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
-    "typescript": "^5"
+    "typescript": "^5",
+    "tailwindcss": "^3.4.14"
   }
 }

@@ -5,23 +5,89 @@ import Image from "next/image";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
-// import { LanguageIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
-// import { useTheme } from "next-themes";
-
 // デフォルトの bodyParser を無効化
 export const config = {
   api : {
     bodyParser : false
   }
 }
-
 const today = new Date();
 
 export default function Home() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
-  // const { theme, setTheme } = useTheme();
+  const [lang, setLang] = useState("en")
+
+  const textList = {
+    textEn: {
+      textTitle: "Extract lyrics from your favorite songs!",
+      textMain1: "Select your audio file and wait while processing completes.",
+      textMain2: "Results may vary with each run. Uploaded files are not stored.",
+      textFormat: "Accepted formats: MP3, M4A, FLAC, or WAV",
+      textButton: "Extract now!",
+      textResult: "Extracted Results",
+      textPolicy: "Privacy Policy",
+      textAbout: "About the Developer"
+    },
+    textEs: {
+      textTitle: "¡Extrae las letras de tus canciones favoritas!",
+      textMain1: "Seleccione su archivo de audio y espere mientras se completa el procesamiento.",
+      textMain2: "Los resultados pueden variar con cada ejecución. Los archivos cargados no se almacenan.",
+      textFormat: "Formatos aceptados: MP3, M4A, FLAC o WAV",
+      textButton: "¡Extraer ahora!",
+      textResult: "Resultados extraídos",
+      textPolicy: "Política de privacidad",
+      textAbout: "Sobre el desarrollador"
+    },
+    textJa: {
+      textTitle: "あの曲の歌詞を抽出しよう",
+      textMain1: "音声ファイルを選んで処理が終わるまで待ちましょう。",
+      textMain2: "抽出結果は毎回異なります。またアップロードしたファイルは保存されません。",
+      textFormat: "対応フォーマット: MP3, M4A, FLAC, WAV",
+      textButton: "実行!",
+      textResult: "抽出結果",
+      textPolicy: "プライバシーポリシー",
+      textAbout: "開発者について"
+    },
+    textZh: {
+      textTitle: "从你最喜欢的歌曲中提取歌词！",
+      textMain1: "选择你的音频文件并等待处理完成。",
+      textMain2: "每次运行的结果可能有所不同。上传的文件不会被保存。",
+      textFormat: "接受的格式: MP3、M4A、FLAC 或 WAV",
+      textButton: "立即提取！",
+      textResult: "提取结果",
+      textPolicy: "隐私政策",
+      textAbout: "关于程序员"
+    },
+    textKr: {
+      textTitle: "좋아하는 노래의 가사를 추출해 보세요!",
+      textMain1: "오디오 파일을 선택하고 처리가 완료될 때까지 기다리세요.",
+      textMain2: "결과는 실행마다 다를 수 있습니다. 업로드된 파일은 저장되지 않습니다.",
+      textFormat: "대응 포맷: MP3, M4A, FLAC 또는 WAV",
+      textButton: "실행!",
+      textResult: "추출 결과",
+      textPolicy: "개인 정보 보호 정책",
+      textAbout: "개발자 정보"
+    }
+  };
+
+  let selectTexts = textList.textEn;
+  if (lang == "es") {
+    selectTexts = textList.textEs
+  }
+  else if (lang == "ja") {
+    selectTexts = textList.textJa
+  }
+  else if (lang == "zh") {
+    selectTexts = textList.textZh
+  }
+  else if (lang == "kr") {
+    selectTexts = textList.textKr
+  }
+  else {
+    selectTexts = textList.textEn
+  };
 
   // const inputFileNameRef = useRef<HTMLInputElement>(null);
   // const inputFileRef = useRef<File | null>(null);
@@ -38,6 +104,8 @@ export default function Home() {
   //   setFiles([...event.target.files]);
   //   event.target.value = "";
   // }
+
+
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files || []);
@@ -74,7 +142,7 @@ export default function Home() {
   //   setLoading(false)
   // };
 
-  async function onClick() {
+  async function sendPost() {
     if (files.length === 0) return;
     setLoading(true);
 
@@ -84,7 +152,7 @@ export default function Home() {
     formData.append("fileName", fileName);
 
     try {
-      const res = await fetch("/api", {
+      const res = await fetch("../api", {
         method: "POST",
         body: formData,
       });
@@ -106,13 +174,13 @@ export default function Home() {
         <div className="flex">
         <Image
           className="mr-auto"
-          src="/Lyrixer_icon.svg"
-          alt="lyrixer logo"
+          src="/images/Lyrixer_icon.svg"
+          alt="lyrixer icon"
           width={40}
           height={40}
           />
         <Image
-          src="/Lyrixer_logo.svg"
+          src="/images/Lyrixer_logo.svg"
           alt="lyrixer logo"
           width={100}
           height={40}
@@ -124,7 +192,7 @@ export default function Home() {
            bg-white dark:bg-black text-gray-900 dark:text-gray-50
            p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
             <LanguageIcon aria-hidden="true" className="-mr-1 h-5 w-5"/>
-            (Language)
+            Language
             <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400"/>
           </MenuButton>
 
@@ -134,36 +202,50 @@ export default function Home() {
             >
             <div className="py-1">
               <MenuItem>
-                <a
-                  href="en"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("en") }
                 >
                   English
-                </a>
+                </div>
+                {/* </a> */}
               </MenuItem>
               <MenuItem>
-                <a
-                  href="es"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("es") }
                 >
                   Español
-                </a>
+                </div>
               </MenuItem>
               <MenuItem>
-                <a
-                  href="ja"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("ja") }
                 >
                   日本語
-                </a>
+                </div>
               </MenuItem>
               <MenuItem>
-                <a
-                  href="zh"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("zh") }
                 >
                   中文
-                </a>
+                </div>
+              </MenuItem>
+              <MenuItem>
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("kr") }
+                >
+                  한국어
+                </div>
               </MenuItem>
             </div>
           </MenuItems>
@@ -187,15 +269,15 @@ export default function Home() {
       <main className="grid grid-rows-1 gap-6 p-6">
         <div>
           <div className="pb-4 text-2xl">
-            Extract lyrics from your favorite songs!
+            { selectTexts.textTitle }
           </div>
           <div>
             <ul className="list-inside text-base text-left font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
-                Select your audio file and wait while processing completes.
+                { selectTexts.textMain1 }
               </li>
               <li className="pl-4 pb-4 list-disc">
-              Results may vary with each run. Uploaded files are not stored.
+                { selectTexts.textMain2 }
               </li>
             </ul>
           </div>
@@ -215,26 +297,26 @@ export default function Home() {
                 file:text-sm file:font-semibold
                 file:bg-blue-50 file:text-blue-700
                 hover:file:bg-blue-100"
-                onChange={onChange}
+                onChange={ onChange }
               />
-                Accepted formats: MP3, M4A, FLAC, or WAV
+                { selectTexts.textFormat }
             </label>
           </form>
 
-          <button className="p-4 m-2 justify-self-center
+          <button className="p-4 w-auto justify-self-center
             bg-sky-400 hover:bg-sky-500 active:bg-sky-600
             text-white font-bold rounded-2xl
             pointer-events-auto"
-            onClick={onClick}
+            onClick={ sendPost }
             disabled={!uploaded || loading}
           >
-            Extract now!
+            { selectTexts.textButton }
           </button>
         </div>
 
         <div>
           <div className="pl-4 font-semibold">
-            Extracted Results
+            { selectTexts.textResult }
           </div>
           <div className="justify-self-center min-h-56 h-auto w-full md:w-7/12
             break-words text-wrap
@@ -271,7 +353,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          (Privacy Policy)
+          { selectTexts.textPolicy }
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -281,12 +363,12 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src="/LinkedIn_icon.svg"
+            src="/images/LinkedIn_icon.svg"
             alt="File icon"
             width={20}
             height={20}
           />
-          About the Developer
+          { selectTexts.textAbout }
         </a>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita
