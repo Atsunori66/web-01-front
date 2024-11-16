@@ -55,13 +55,13 @@ export const textList = {
     textAbout: "关于开发者"
   },
   textKr: {
-    textMain0: "좋아하는 노래의 가사를 추출해 보세요!",
-    textMain1: "오디오 파일을 업로드하면 우리가 처리해 드릴게요.",
-    textMain2: "모든 언어의 노래를 지원합니다. 결과는 실행할 때마다 다를 수 있어요.",
-    textMain3: "보통 약 2~3분 정도 소요됩니다.",
+    textMain0: "저 곡의 가사를 추출해 내자",
+    textMain1: "음성 파일을 업로드하고 처리가 완료될 때까지 기다리기만 하면 됩니다.",
+    textMain2: "어떤 언어의 곡에도 대응합니다. 결과는 실행마다 다를 수 있습니다.",
+    textMain3: "처리는 대략 2~3분 소요됩니다.",
     textFormat: "대응 포맷: MP3, MP4, WAV, AAC, FLAC",
     textButton: "실행!",
-    textResult: "추출된 결과",
+    textResult: "추출 결과",
     textPolicy: "개인정보 처리방침",
     textAbout: "개발자 정보"
   }
