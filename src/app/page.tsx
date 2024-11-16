@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
+import { textList } from "./textList";
 
 // デフォルトの bodyParser を無効化
 export const config = {
@@ -20,74 +21,24 @@ export default function Home() {
   const [uploaded, setUploaded] = useState(false);
   const [lang, setLang] = useState("en")
 
-  const textList = {
-    textEn: {
-      textTitle: "Extract lyrics from your favorite songs!",
-      textMain1: "Select your audio file and wait while processing completes.",
-      textMain2: "Results may vary with each run. Uploaded files are not stored.",
-      textFormat: "Accepted formats: MP3, M4A, FLAC, or WAV",
-      textButton: "Extract now!",
-      textResult: "Extracted Results",
-      textPolicy: "Privacy Policy",
-      textAbout: "About the Developer"
-    },
-    textEs: {
-      textTitle: "¡Extrae las letras de tus canciones favoritas!",
-      textMain1: "Seleccione su archivo de audio y espere mientras se completa el procesamiento.",
-      textMain2: "Los resultados pueden variar con cada ejecución. Los archivos cargados no se almacenan.",
-      textFormat: "Formatos aceptados: MP3, M4A, FLAC o WAV",
-      textButton: "¡Extraer ahora!",
-      textResult: "Resultados extraídos",
-      textPolicy: "Política de privacidad",
-      textAbout: "Sobre el desarrollador"
-    },
-    textJa: {
-      textTitle: "あの曲の歌詞を抽出しよう",
-      textMain1: "音声ファイルを選んで処理が終わるまで待ちましょう。",
-      textMain2: "抽出結果は毎回異なります。またアップロードしたファイルは保存されません。",
-      textFormat: "対応フォーマット: MP3, M4A, FLAC, WAV",
-      textButton: "実行!",
-      textResult: "抽出結果",
-      textPolicy: "プライバシーポリシー",
-      textAbout: "開発者について"
-    },
-    textZh: {
-      textTitle: "从你最喜欢的歌曲中提取歌词！",
-      textMain1: "选择你的音频文件并等待处理完成。",
-      textMain2: "每次运行的结果可能有所不同。上传的文件不会被保存。",
-      textFormat: "接受的格式: MP3、M4A、FLAC 或 WAV",
-      textButton: "立即提取！",
-      textResult: "提取结果",
-      textPolicy: "隐私政策",
-      textAbout: "关于程序员"
-    },
-    textKr: {
-      textTitle: "좋아하는 노래의 가사를 추출해 보세요!",
-      textMain1: "오디오 파일을 선택하고 처리가 완료될 때까지 기다리세요.",
-      textMain2: "결과는 실행마다 다를 수 있습니다. 업로드된 파일은 저장되지 않습니다.",
-      textFormat: "대응 포맷: MP3, M4A, FLAC 또는 WAV",
-      textButton: "실행!",
-      textResult: "추출 결과",
-      textPolicy: "개인 정보 보호 정책",
-      textAbout: "개발자 정보"
-    }
-  };
-
-  let selectTexts = textList.textEn;
+  let texts = textList.textEn;
   if (lang == "es") {
-    selectTexts = textList.textEs
+    texts = textList.textEs
+  }
+  else if (lang == "fr") {
+    texts = textList.textFr
   }
   else if (lang == "ja") {
-    selectTexts = textList.textJa
+    texts = textList.textJa
   }
   else if (lang == "zh") {
-    selectTexts = textList.textZh
+    texts = textList.textZh
   }
   else if (lang == "kr") {
-    selectTexts = textList.textKr
+    texts = textList.textKr
   }
   else {
-    selectTexts = textList.textEn
+    texts = textList.textEn
   };
 
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -112,30 +63,6 @@ export default function Home() {
     // Clear the input after selection
     // event.target.value = "";
   }
-
-  // event: React.MouseEvent<HTMLInputElement>
-  // event: FormEvent<HTMLFormElement>
-  // async function onClick(formData: FormData) {
-  // async function onClick(event: any) {
-  //   setLoading(true);
-  //   const formData = new FormData();
-  //   // const file = formData.get("inputFile") as File;
-
-  //   const targetFile = event.target.value
-  //   formData.append("targetFile", targetFile)
-  //   // formData.append("fileName", fileName)
-  //   const res = await fetch(
-  //       "/rh",
-  //       {
-  //         method: "POST",
-  //         body: formData,
-  //       }
-  //     );
-
-  //   const data = await res.text()
-  //   setMsg(data);
-  //   setLoading(false)
-  // };
 
   async function sendPost() {
     if (files.length === 0) return;
@@ -218,6 +145,15 @@ export default function Home() {
                 <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("fr") }
+                >
+                  Français
+                </div>
+              </MenuItem>
+              <MenuItem>
+                <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("ja") }
                 >
                   日本語
@@ -263,15 +199,18 @@ export default function Home() {
       <main className="grid grid-rows-1 gap-6 p-6">
         <div>
           <div className="pb-4 text-2xl">
-            { selectTexts.textTitle }
+            { texts.textMain0 }
           </div>
           <div>
             <ul className="list-inside text-base text-left font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
-                { selectTexts.textMain1 }
+                { texts.textMain1 }
               </li>
               <li className="pl-4 pb-4 list-disc">
-                { selectTexts.textMain2 }
+                { texts.textMain2 }
+              </li>
+              <li className="pl-4 pb-4 list-disc">
+                { texts.textMain3 }
               </li>
             </ul>
           </div>
@@ -293,7 +232,7 @@ export default function Home() {
                 hover:file:bg-blue-100"
                 onChange={ onChange }
               />
-                { selectTexts.textFormat }
+                { texts.textFormat }
             </label>
           </form>
 
@@ -304,15 +243,15 @@ export default function Home() {
             onClick={ sendPost }
             disabled={!uploaded || loading}
           >
-            { selectTexts.textButton }
+            { texts.textButton }
           </button>
         </div>
 
         <div>
           <div className="pl-4 font-semibold">
-            { selectTexts.textResult }
+            { texts.textResult }
           </div>
-          <div className="justify-self-center min-h-56 h-auto w-full md:w-7/12
+          <div className="justify-self-center min-h-48 h-auto w-full md:w-7/12
             break-words text-wrap
             whitespace-pre-wrap p-2 mt-4
             box-border border-2 border-gray-400 border-dotted"
@@ -332,11 +271,11 @@ export default function Home() {
 
       </main>
 
-      {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"> */}
       <footer className="flex gap-4 p-4 justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://example.com/"
+          href="/policy"
+          as="policy"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -347,7 +286,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          { selectTexts.textPolicy }
+          { texts.textPolicy }
         </Link>
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -362,7 +301,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          { selectTexts.textAbout }
+          { texts.textAbout }
         </Link>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita

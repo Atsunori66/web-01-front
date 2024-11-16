@@ -40,7 +40,6 @@ export async function POST(req: Request) {
   }
 
   try {
-    // axiosでの送信設定
     const res = await axios.post(
       url!,
       formData,
@@ -50,9 +49,10 @@ export async function POST(req: Request) {
     );
     const data = res.data;
 
-    return new Response(JSON.stringify(data), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify(data),
+      { status: 200 }
+    );
   } catch (error: unknown) {
     if (error instanceof Error) {
       return new Response(
