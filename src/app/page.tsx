@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import { textList } from "./textList";
+import axios from "axios";
 
 // デフォルトの bodyParser を無効化
 export const config = {
@@ -73,11 +74,20 @@ export default function Home() {
     formData.append("fileName", fileName);
 
     try {
-      const res = await fetch("../api", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.text();
+      const instance = axios.create();
+      const res = await instance.post(
+        "../api",
+        formData,
+        {
+          timeout: 600000
+        }
+      );
+      // const res = await fetch("../api", {
+      //   method: "POST",
+      //   body: formData,
+      // });
+      // const data = await res.text();
+      const data = await res.data;
       setMsg(data);
     } catch (error: unknown) {
       if (error instanceof Error) {

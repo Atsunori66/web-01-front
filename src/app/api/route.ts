@@ -40,11 +40,14 @@ export async function POST(req: Request) {
   }
 
   try {
-    const res = await axios.post(
+    const instance = axios.create();
+    // const res = await axios.post(
+    const res = await instance.post(
       url!,
       formData,
       {
-        headers: formData.getHeaders()
+        headers: formData.getHeaders(),
+        timeout: 600000
       }
     );
     const data = res.data;
