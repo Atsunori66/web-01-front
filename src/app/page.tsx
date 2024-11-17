@@ -232,7 +232,7 @@ export default function Home() {
               <input
                 type="file"
                 name="inputFile"
-                accept=".mp3, .m4a, .flac, .wav"
+                accept=".mp3, .mp4, .wav, .aac, .flac"
                 ref={inputFileRef}
                 className="block w-full text-sm text-slate-500
                 file:mr-4 file:py-2 file:px-4
