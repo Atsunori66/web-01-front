@@ -75,7 +75,7 @@ export default function Policy() {
           6. Contact Information
           <ul className="list-inside">
             <li className="p-2 list-disc">
-              For any questions or concerns about the service or this privacy policy, please contact us at <span className="text-blue-500 underline">atsuki.sumita@outlook.com</span>.
+              For any questions or concerns about the service or this privacy policy, please contact us at <span className="text-blue-500 underline">info.contact@lyrixer.com</span>.
             </li>
 
           </ul>
