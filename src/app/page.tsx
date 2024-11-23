@@ -17,7 +17,7 @@ export const config = {
 const today = new Date();
 
 export default function Home() {
-  const [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [lang, setLang] = useState("en")
@@ -74,21 +74,41 @@ export default function Home() {
     formData.append("fileName", fileName);
 
     try {
-      const instance = axios.create();
-      const res = await instance.post(
+      const res = await axios.post(
         "../api",
         formData,
         {
           timeout: 600000
         }
       );
-      // const res = await fetch("../api", {
-      //   method: "POST",
-      //   body: formData,
-      // });
-      // const data = await res.text();
-      const data = await res.data;
-      setMsg(data);
+
+      const pollForResult = async (trackingUrl: string) => {
+        try {
+          let result = null;
+          while (!result) {
+            const res = await axios.get(trackingUrl);
+            if (res.status === 200) {
+              result = res.data;
+              setMsg(result);
+              break;
+            }
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          }
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            setMsg(error.message);
+          }
+        }
+      };
+
+      if (res.status === 202) {
+        setMsg(res.data);
+        const trackingUrl = res.headers.location;
+        pollForResult(trackingUrl);
+      };
+      if (res.status === 200) {
+        setMsg(res.data);
+      };
     } catch (error: unknown) {
       if (error instanceof Error) {
         setMsg(error.message);

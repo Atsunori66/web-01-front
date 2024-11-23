@@ -6,10 +6,7 @@ import { BlobServiceClient } from "@azure/storage-blob";
 import { DefaultAzureCredential } from "@azure/identity";
 
 const url = process.env.LOGIC_APP_STANDARD_URL;
-if (!url) throw Error("Logic App url not found");
-
 const accountName = process.env.AZURE_STORAGE_ACCOUNT_NAME;
-if (!accountName) throw Error("Azure Storage accountName not found");
 
 const blobServiceClient = new BlobServiceClient(
   `https://${accountName}.blob.core.windows.net`,
@@ -34,15 +31,16 @@ export async function POST(req: Request) {
     // fileName だけを form から送信
     formData.append("fileName", fileName);
   } else {
-    return new Response(JSON.stringify({ error: "Invalid file or fileName" }), {
-      status: 400,
-    });
+    return new Response(
+      JSON.stringify({
+        error: "Invalid file or fileName"
+      }),
+      { status: 400 }
+    );
   }
 
   try {
-    const instance = axios.create();
-    // const res = await axios.post(
-    const res = await instance.post(
+      const res = await axios.post(
       url!,
       formData,
       {
@@ -50,16 +48,33 @@ export async function POST(req: Request) {
         timeout: 600000
       }
     );
-    const data = res.data;
 
-    return new Response(
-      JSON.stringify(data),
-      { status: 200 }
-    );
+    if (res.status === 202) {
+      const locationHeader = res.headers["location"];
+      return new Response(
+        JSON.stringify(
+          "Request is accepted! Now processing..."
+        ),
+        {
+          status: 202,
+          headers: { location: locationHeader }
+        }
+      );
+    } else if (res.status === 200) {
+      return new Response(
+        JSON.stringify(
+          res.data,
+        ),
+        { status: 200 }
+      );
+    };
   } catch (error: unknown) {
     if (error instanceof Error) {
       return new Response(
-        JSON.stringify({ error: "Failed to upload file", details: error.message }),
+        JSON.stringify({
+          error: "Failed to upload file",
+          details: error.message
+        }),
         { status: 500 }
       );
     }
