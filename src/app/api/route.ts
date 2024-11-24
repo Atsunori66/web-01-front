@@ -52,9 +52,7 @@ export async function POST(req: Request) {
     if (res.status === 202) {
       const locationHeader = res.headers["location"];
       return new Response(
-        JSON.stringify(
-          "Request is accepted! Now processing..."
-        ),
+        null,
         {
           status: 202,
           headers: { location: locationHeader }
@@ -63,7 +61,7 @@ export async function POST(req: Request) {
     } else if (res.status === 200) {
       return new Response(
         JSON.stringify(
-          res.data,
+          res.data
         ),
         { status: 200 }
       );

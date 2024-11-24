@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { LanguageIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
+import { LanguageIcon, ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { textList } from "./textList";
 import axios from "axios";
 
@@ -20,6 +20,7 @@ export default function Home() {
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const [accepted, setAccepted] = useState(false);
   const [lang, setLang] = useState("en")
 
   let texts = textList.textEn;
@@ -46,24 +47,22 @@ export default function Home() {
   const [files, setFiles] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string>("");
 
-  // function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   const inputFile = inputFileRef["current"]
-  //   const fileName = inputFileNameRef.current!.value;
-  //   setUploaded(true);
-  //   setFiles([...event.target.files]);
-  //   event.target.value = "";
-  // }
-
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files || []);
     if (selectedFiles.length > 0) {
       setFiles(selectedFiles);
       setFileName(selectedFiles[0].name);
       setUploaded(true);
-    }
+    };
     // Clear the input after selection
-    // event.target.value = "";
-  }
+    event.target.value = "";
+  };
+
+  function cancelInput() {
+    setFiles([]);
+    setFileName("");
+    setUploaded(false);
+  };
 
   async function sendPost() {
     if (files.length === 0) return;
@@ -77,9 +76,7 @@ export default function Home() {
       const res = await axios.post(
         "../api",
         formData,
-        {
-          timeout: 600000
-        }
+        { timeout: 600000 }
       );
 
       const pollForResult = async (trackingUrl: string) => {
@@ -102,11 +99,13 @@ export default function Home() {
       };
 
       if (res.status === 202) {
-        setMsg(res.data);
+        setAccepted(true);
+        setMsg(texts.textAccepted);
         const trackingUrl = res.headers.location;
         pollForResult(trackingUrl);
       };
       if (res.status === 200) {
+        setAccepted(false);
         setMsg(res.data);
       };
     } catch (error: unknown) {
@@ -149,8 +148,12 @@ export default function Home() {
 
           <MenuItems
             transition
-            className="absolute z-10 mt-2 origin-top-right rounded-md bg-white dark:bg-black text-black dark:text-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-            >
+            className="absolute z-10 mt-2 origin-top-right rounded-md
+            bg-white dark:bg-black text-black dark:text-white shadow-lg
+            ring-1 ring-black ring-opacity-5 transition focus:outline-none
+            data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0
+            data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+          >
             <div className="py-1">
               <MenuItem>
                 <div className="block px-4 py-2 text-sm
@@ -247,14 +250,28 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center gap-8">
-          <form className="flex justify-center items-center space-x-6">
+          <form className="justify-center items-center space-x-6">
+            <div className="flex">
+              <div className="ml-6 text-lg">
+                { uploaded == true ? fileName : "" }
+              </div>
+              {
+                uploaded == true ?
+                <XMarkIcon
+                  aria-hidden="true"
+                  className="ml-auto -mr-10 h-6 w-6 text-slate-400"
+                  onClick={ cancelInput }>
+                </XMarkIcon>
+                : ""
+              }
+            </div>
             <label className="block min-w-fit max-w-sm">
               <input
                 type="file"
                 name="inputFile"
                 accept=".mp3, .mp4, .wav, .aac, .flac"
                 ref={inputFileRef}
-                className="block w-full text-sm text-slate-500
+                className="block w-full text-sm text-slate-500 py-2
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
@@ -262,16 +279,26 @@ export default function Home() {
                 hover:file:bg-blue-100"
                 onChange={ onChange }
               />
-                { texts.textFormat }
+                <div className="text-sm">
+                  { texts.textFormat }
+                </div>
             </label>
           </form>
 
-          <button className="p-4 w-auto justify-self-center
+          <button className="p-4 h-auto w-auto justify-self-center self-end
             bg-sky-400 hover:bg-sky-500 active:bg-sky-600
             text-white font-bold rounded-2xl
-            pointer-events-auto"
+            pointer-events-auto
+            disabled:bg-slate-300 disabled:cursor-not-allowed"
             onClick={ sendPost }
-            disabled={!uploaded || loading}
+            disabled={
+              // uploaded == true && loading == false && msg == null ? false
+              (uploaded == true && loading == false) && (accepted == false || msg == null) ? false
+              :
+              uploaded == false || loading == true ? true
+              :
+              true
+            }
           >
             { texts.textButton }
           </button>
@@ -281,6 +308,11 @@ export default function Home() {
           <div className="pl-4 font-semibold">
             { texts.textResult }
           </div>
+          {/* <div className="justify-self-center">
+            {
+              uploaded == true ? "Target: " + fileName : "Pick your file!"
+            }
+          </div> */}
           <div className="justify-self-center min-h-48 h-auto w-full md:w-7/12
             break-words text-wrap
             whitespace-pre-wrap p-2 mt-4
@@ -301,7 +333,7 @@ export default function Home() {
 
       </main>
 
-      <footer className="flex gap-4 p-4 justify-center">
+      <footer className="flex gap-4 px-8 py-2 text-sm md:text-base justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/policy"
