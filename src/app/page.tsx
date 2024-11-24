@@ -62,6 +62,8 @@ export default function Home() {
     setFiles([]);
     setFileName("");
     setUploaded(false);
+    setLoading(false);
+    setAccepted(false);
   };
 
   async function sendPost() {
@@ -100,6 +102,7 @@ export default function Home() {
 
       if (res.status === 202) {
         setAccepted(true);
+        setLoading(false);
         setMsg(texts.textAccepted);
         const trackingUrl = res.headers.location;
         pollForResult(trackingUrl);
@@ -112,9 +115,10 @@ export default function Home() {
       if (error instanceof Error) {
         setMsg(error.message);
       }
-    } finally {
-      setLoading(false);
-    };
+    }
+    // finally {
+    //   setLoading(false);
+    // };
   };
 
   return (
@@ -258,9 +262,9 @@ export default function Home() {
               {
                 uploaded == true ?
                 <XMarkIcon
-                  aria-hidden="true"
                   className="ml-auto -mr-10 h-6 w-6 text-slate-400"
-                  onClick={ cancelInput }>
+                  onClick={ cancelInput }
+                >
                 </XMarkIcon>
                 : ""
               }
@@ -269,7 +273,7 @@ export default function Home() {
               <input
                 type="file"
                 name="inputFile"
-                accept=".mp3, .mp4, .wav, .aac, .flac"
+                accept=".mp3, .mp4, .m4a, .wav, .aac, .flac"
                 ref={inputFileRef}
                 className="block w-full text-sm text-slate-500 py-2
                 file:mr-4 file:py-2 file:px-4
@@ -313,7 +317,7 @@ export default function Home() {
               uploaded == true ? "Target: " + fileName : "Pick your file!"
             }
           </div> */}
-          <div className="justify-self-center min-h-48 h-auto w-full md:w-7/12
+          <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
             break-words text-wrap
             whitespace-pre-wrap p-2 mt-4
             box-border border-2 border-gray-400 border-dotted"
