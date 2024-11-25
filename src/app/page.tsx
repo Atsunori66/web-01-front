@@ -293,7 +293,7 @@ export default function Home() {
             disabled:bg-gray-300 disabled:cursor-not-allowed"
             onClick={ sendPost }
             disabled={
-              (uploaded == true && loading == false) && (accepted == false || msg == null) ? false
+              (uploaded == true && loading == false && accepted == false) && (returned == true || msg == null) ? false
               :
               uploaded == false || loading == true || accepted == true ? true
               :
