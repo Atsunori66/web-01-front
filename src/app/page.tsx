@@ -333,7 +333,7 @@ export default function Home() {
 
       </main>
 
-      <footer className="grid md:flex gap-4 px-8 py-2 text-sm md:text-base justify-center">
+      <footer className="grid md:flex gap-4 px-8 py-4 text-base justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/policy"
