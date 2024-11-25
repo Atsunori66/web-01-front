@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { LanguageIcon, ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { LanguageIcon, ChevronDownIcon, XMarkIcon, ClipboardDocumentIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
 import { textList } from "./textList";
 import axios from "axios";
 
@@ -21,25 +21,21 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [accepted, setAccepted] = useState(false);
+  const [returned, setReturned] = useState(false);
   const [lang, setLang] = useState("en");
 
   let texts = textList.textEn;
   if (lang == "es") {
     texts = textList.textEs
-  }
-  else if (lang == "fr") {
+  } else if (lang == "fr") {
     texts = textList.textFr
-  }
-  else if (lang == "ja") {
+  } else if (lang == "ja") {
     texts = textList.textJa
-  }
-  else if (lang == "zh") {
+  } else if (lang == "zh") {
     texts = textList.textZh
-  }
-  else if (lang == "kr") {
+  } else if (lang == "kr") {
     texts = textList.textKr
-  }
-  else {
+  } else {
     texts = textList.textEn
   };
 
@@ -47,7 +43,7 @@ export default function Home() {
   const [files, setFiles] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string>("");
 
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function getInput(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files || []);
     if (selectedFiles.length > 0) {
       setFiles(selectedFiles);
@@ -88,6 +84,7 @@ export default function Home() {
             if (res.status === 200) {
               result = res.data;
               setMsg(result);
+              setReturned(true);
               break;
             };
             await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -106,15 +103,16 @@ export default function Home() {
         const trackingUrl = res.headers.location;
         pollForResult(trackingUrl);
       };
-      if (res.status === 200) {
-        setAccepted(false);
-        setMsg(res.data);
-      };
     } catch (error: unknown) {
       if (error instanceof Error) {
         setMsg(error.message);
       };
     };
+  };
+
+  const clickHandler = async () => {
+    await navigator.clipboard.writeText(msg!);
+    alert("Copied!");
   };
 
   return (
@@ -230,12 +228,13 @@ export default function Home() {
       </header>
 
       <main className="grid grid-rows-1 gap-6 p-6">
+
         <div>
           <div className="pb-4 text-2xl">
             { texts.textMain0 }
           </div>
           <div>
-            <ul className="list-inside text-base text-left font-[family-name:var(--font-geist-mono)]">
+            <ul className="list-inside text-sm md:text-base font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
                 { texts.textMain1 }
               </li>
@@ -258,7 +257,7 @@ export default function Home() {
               {
                 uploaded == true ?
                 <XMarkIcon
-                  className="ml-auto -mr-10 h-6 w-6 text-slate-400"
+                  className="ml-auto -mr-10 h-6 w-6 text-slate-400 cursor-pointer"
                   onClick={ cancelInput }
                 >
                 </XMarkIcon>
@@ -271,13 +270,13 @@ export default function Home() {
                 name="inputFile"
                 accept=".mp3, .mp4, .m4a, .wav, .aac, .flac"
                 ref={inputFileRef}
-                className="block w-full text-sm text-slate-500 py-2
+                className="block w-full text-sm text-slate-500 py-2 file:cursor-pointer
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
                 file:bg-blue-50 file:text-blue-700
                 hover:file:bg-blue-100"
-                onChange={ onChange }
+                onChange={ getInput }
               />
                 <div className="text-sm">
                   { texts.textFormat }
@@ -286,13 +285,12 @@ export default function Home() {
           </form>
 
           <button className="p-4 h-auto w-auto justify-self-center self-end
-            bg-sky-400 hover:bg-sky-500 active:bg-sky-600
-            text-white font-bold rounded-2xl
-            pointer-events-auto
-            disabled:bg-slate-300 disabled:cursor-not-allowed"
+            bg-blue-400 hover:bg-blue-500 active:bg-blue-600
+            text-white font-bold rounded-2xl text-xl
+            pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
+            disabled:bg-gray-300 disabled:cursor-not-allowed"
             onClick={ sendPost }
             disabled={
-              // uploaded == true && loading == false && msg == null ? false
               (uploaded == true && loading == false) && (accepted == false || msg == null) ? false
               :
               uploaded == false || loading == true ? true
@@ -304,20 +302,16 @@ export default function Home() {
           </button>
         </div>
 
-        <div>
-          <div className="pl-4 font-semibold">
+        <div className="pt-6">
+          <div className="font-semibold pl-4">
             { texts.textResult }
           </div>
-          {/* <div className="justify-self-center">
-            {
-              uploaded == true ? "Target: " + fileName : "Pick your file!"
-            }
-          </div> */}
-          <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
-            break-words text-wrap
-            whitespace-pre-wrap p-2 mt-4
-            box-border border-2 border-gray-400 border-dotted"
-          >
+          <div className="flex justify-center">
+            <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
+              break-words text-wrap
+              whitespace-pre-wrap p-2 mt-4 rounded-xl
+              box-border border-2 border-gray-400 border-solid bg-zinc-50"
+            >
             {
               loading == true ?
               <div className="flex justify-center" aria-label="読み込み中">
@@ -328,12 +322,21 @@ export default function Home() {
               :
               msg
             }
-            </div>
+          </div>
+            {
+              returned == true ?
+              <ClipboardDocumentIcon
+                className="h-5 w-5 ml-2 mt-4 text-white stroke-black cursor-pointer"
+                onClick={ clickHandler }>
+              </ClipboardDocumentIcon>
+              : ""
+            }
+          </div>
         </div>
 
       </main>
 
-      <footer className="grid md:flex gap-4 px-8 py-4 text-base justify-center">
+      <footer className="grid md:flex gap-8 p-2 text-base justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/policy"
@@ -341,13 +344,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={20}
-            height={20}
-          />
+          <DocumentTextIcon className="h-5 w-5 text-white stroke-black"></DocumentTextIcon>
           { texts.textPolicy }
         </Link>
         <Link
