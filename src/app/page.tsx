@@ -229,6 +229,7 @@ export default function Home() {
 
       <main className="grid grid-rows-1 gap-6 p-6">
 
+        {/* Main Texts section */}
         <div>
           <div className="pb-4 text-2xl">
             { texts.textMain0 }
@@ -248,6 +249,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* File Upload section */}
         <div className="flex justify-center gap-8">
           <form className="justify-center items-center space-x-6">
             <div className="flex">
@@ -293,7 +295,7 @@ export default function Home() {
             disabled={
               (uploaded == true && loading == false) && (accepted == false || msg == null) ? false
               :
-              uploaded == false || loading == true ? true
+              uploaded == false || loading == true || accepted == true ? true
               :
               true
             }
@@ -302,16 +304,26 @@ export default function Home() {
           </button>
         </div>
 
+        {/* Extracted Result section */}
         <div className="pt-6">
-          <div className="font-semibold pl-4">
-            { texts.textResult }
+          <div className="flex">
+            <div className="font-semibold">
+              { texts.textResult }
+            </div>
+            {
+              returned == true ?
+              <ClipboardDocumentIcon
+              className="h-5 w-5 ml-36 cursor-pointer place-self-end"
+              onClick={ clickHandler }>
+              </ClipboardDocumentIcon>
+              : ""
+            }
           </div>
-          <div className="flex justify-center">
-            <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
-              break-words text-wrap
-              whitespace-pre-wrap p-2 mt-4 rounded-xl
-              box-border border-2 border-gray-400 border-solid bg-zinc-50"
-            >
+          <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
+            break-words text-wrap
+            whitespace-pre-wrap p-2 mt-4 rounded-xl
+            box-border border-2 border-gray-400 bg-zinc-50 dark:bg-zinc-700"
+          >
             {
               loading == true ?
               <div className="flex justify-center" aria-label="読み込み中">
@@ -323,20 +335,11 @@ export default function Home() {
               msg
             }
           </div>
-            {
-              returned == true ?
-              <ClipboardDocumentIcon
-                className="h-5 w-5 ml-2 mt-4 text-white stroke-black cursor-pointer"
-                onClick={ clickHandler }>
-              </ClipboardDocumentIcon>
-              : ""
-            }
-          </div>
         </div>
 
       </main>
 
-      <footer className="grid md:flex gap-8 p-2 text-base justify-center">
+      <footer className="grid md:flex gap-4 md:gap-8 p-2 text-sm md:text-base justify-center">
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/policy"
@@ -344,7 +347,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <DocumentTextIcon className="h-5 w-5 text-white stroke-black"></DocumentTextIcon>
+          <DocumentTextIcon className="h-5 w-5"></DocumentTextIcon>
           { texts.textPolicy }
         </Link>
         <Link
