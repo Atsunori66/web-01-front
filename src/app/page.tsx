@@ -21,7 +21,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [accepted, setAccepted] = useState(false);
-  const [lang, setLang] = useState("en")
+  const [lang, setLang] = useState("en");
 
   let texts = textList.textEn;
   if (lang == "es") {
@@ -54,7 +54,6 @@ export default function Home() {
       setFileName(selectedFiles[0].name);
       setUploaded(true);
     };
-    // Clear the input after selection
     event.target.value = "";
   };
 
@@ -76,7 +75,7 @@ export default function Home() {
 
     try {
       const res = await axios.post(
-        "../api",
+        "./api",
         formData,
         { timeout: 600000 }
       );
@@ -90,14 +89,14 @@ export default function Home() {
               result = res.data;
               setMsg(result);
               break;
-            }
+            };
             await new Promise((resolve) => setTimeout(resolve, 5000));
-          }
+          };
         } catch (error: unknown) {
           if (error instanceof Error) {
             setMsg(error.message);
-          }
-        }
+          };
+        };
       };
 
       if (res.status === 202) {
@@ -114,11 +113,8 @@ export default function Home() {
     } catch (error: unknown) {
       if (error instanceof Error) {
         setMsg(error.message);
-      }
-    }
-    // finally {
-    //   setLoading(false);
-    // };
+      };
+    };
   };
 
   return (

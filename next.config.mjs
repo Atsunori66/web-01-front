@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  output: 'standalone'
+  output: "standalone"
 };
 
 export default nextConfig;
 
 // module.exports = {
-//     i18n: {
-//       locales: ['en', 'ja'],
-//       defaultLocale: 'en',
-//     },
-// }
+//   i18n: {
+//     locales: ['en', 'ja'],
+//     defaultLocale: 'en',
+//   }
+// };
