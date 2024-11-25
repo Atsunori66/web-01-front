@@ -36,7 +36,7 @@ export const textList = {
     textAccepted: "La demande est acceptée ! Traitement en cours..."
   },
   textJa: {
-    textMain0: "どんな曲の歌詞も抽出！",
+    textMain0: "どんな曲の歌詞も抽出",
     textMain1: "曲のファイルをアップロードして、処理が完了するのを待つだけです。",
     textMain2: "どの言語にも対応しています。結果は実行ごとに異なる場合があります。",
     textMain3: "現時点では大体曲と同じ長さの時間がかかります。",
@@ -53,7 +53,7 @@ export const textList = {
     textMain2: "支持任何语言的歌曲，结果可能每次都不同。",
     textMain3: "目前，处理时间与歌曲的时间大致相同。",
     textFormat: "支持的格式: MP3, MP4, M4A, WAV, AAC 或 FLAC",
-    textButton: "立即提取！",
+    textButton: "运行！",
     textResult: "提取结果",
     textPolicy: "隐私政策",
     textAbout: "关于开发者",
