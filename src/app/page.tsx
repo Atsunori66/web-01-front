@@ -286,9 +286,9 @@ export default function Home() {
             </label>
           </form>
 
-          <button className="p-4 h-auto w-auto justify-self-center self-end
+          <button className="p-4 min-h-16 h-auto min-w-20 w-auto justify-self-center self-end
             bg-blue-400 hover:bg-blue-500 active:bg-blue-600
-            text-white font-bold rounded-2xl text-lg
+            text-white font-bold rounded-2xl
             pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
             disabled:bg-gray-300 disabled:cursor-not-allowed"
             onClick={ sendPost }
