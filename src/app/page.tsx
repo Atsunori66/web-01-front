@@ -312,17 +312,17 @@ export default function Home() {
               { texts.textResult }
             </div>
             {
-              returned == true ?
+              returned == false ?
               <div className="flex">
                 {
                   copied == true ?
-                  <span className="absolute ml-20 font-bold">
+                  <span className="absolute ml-32 md:ml-16 font-bold">
                     Copied!
                   </span>
                   : ""
                 }
                 <ClipboardDocumentIcon
-                  className="h-5 w-5 ml-36 cursor-pointer place-self-end relative"
+                  className="relative h-5 w-5 ml-52 md:ml-36 cursor-pointer justify-self-end"
                   onClick={ copyResult }>
                 </ClipboardDocumentIcon>
               </div>
