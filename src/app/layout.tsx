@@ -7,6 +7,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -15,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LyriXer - Lyrics Extractor AI",
-  description: "Your favorite lyrics extractor AI and it's completely free",
+  description: "Your new favorite lyrics extractor AI and it's completely free.",
 };
 
 export default function RootLayout({

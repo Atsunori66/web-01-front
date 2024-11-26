@@ -22,6 +22,7 @@ export default function Home() {
   const [uploaded, setUploaded] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [returned, setReturned] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [lang, setLang] = useState("en");
 
   let texts = textList.textEn;
@@ -110,9 +111,9 @@ export default function Home() {
     };
   };
 
-  const clickHandler = async () => {
+  const copyResult = async () => {
+    setCopied(true);
     await navigator.clipboard.writeText(msg!);
-    alert("Copied!");
   };
 
   return (
@@ -312,10 +313,19 @@ export default function Home() {
             </div>
             {
               returned == true ?
-              <ClipboardDocumentIcon
-              className="h-5 w-5 ml-36 cursor-pointer place-self-end"
-              onClick={ clickHandler }>
-              </ClipboardDocumentIcon>
+              <div className="flex">
+                {
+                  copied == true ?
+                  <span className="absolute ml-20 font-bold">
+                    Copied!
+                  </span>
+                  : ""
+                }
+                <ClipboardDocumentIcon
+                  className="h-5 w-5 ml-36 cursor-pointer place-self-end relative"
+                  onClick={ copyResult }>
+                </ClipboardDocumentIcon>
+              </div>
               : ""
             }
           </div>
