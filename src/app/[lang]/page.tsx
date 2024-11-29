@@ -363,13 +363,10 @@ export default function Home(
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
           {
-            resolvedTheme === "light" ?
-            <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-blue-700 fill-white"></MoonIcon>
-            :
             resolvedTheme === "dark" ?
             <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-white"></SunIcon>
             :
-            typeof(resolvedTheme)
+            <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-blue-700 fill-white"></MoonIcon>
           }
         </button>
       </header>
