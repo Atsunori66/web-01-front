@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-import { i18n } from "./i18n-config";
+import { i18n } from "./app/i18n/i18n-config";
 
 export const config = {
   // matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)"],

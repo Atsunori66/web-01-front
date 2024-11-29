@@ -8,8 +8,8 @@ import { LanguageIcon, ChevronDownIcon, XMarkIcon, ClipboardDocumentIcon, Docume
 import axios from "axios";
 // import { textList } from "./textList";
 
-import { Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
+import { Locale } from "../i18n/i18n-config";
+import { getDictionary } from "../i18n/get-dictionary";
 
 // デフォルトの bodyParser を無効化
 export const config = {
