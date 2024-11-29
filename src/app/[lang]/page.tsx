@@ -251,7 +251,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/en" }
                 >
                   English
@@ -266,7 +267,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/es" }
                 >
                   Español
@@ -281,7 +283,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/fr" }
                   >
                   Français
@@ -296,7 +299,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/de" }
                   >
                   Deutsch
@@ -311,7 +315,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/ja" }
                   >
                   日本語
@@ -326,7 +331,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/zh" }
                   >
                   中文
@@ -341,7 +347,8 @@ export default function Home(
                 > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900
+                  dark:data-[focus]:bg-gray-800 dark:data-[focus]:text-gray-100"
                   href={ "/ko" }
                   >
                   한국어
