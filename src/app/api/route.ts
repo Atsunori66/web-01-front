@@ -15,13 +15,14 @@ const blobServiceClient = new BlobServiceClient(
 
 export async function POST(req: Request) {
   const incomingFormData = await req.formData();
-  const formData = new FormData();
   const file = incomingFormData.get("file")
   const fileName = incomingFormData.get("fileName")!.toString()
 
   const containerName = "00-landing";
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+
+  const formData = new FormData();
 
   if (file instanceof Blob) {
     // コンテナーにアップロード

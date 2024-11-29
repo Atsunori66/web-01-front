@@ -1,0 +1,18 @@
+{
+  "top": {
+    "headLine": "Extract lyrics from any song!",
+    "main1": "Upload your audio file and let us process it for you.",
+    "main2": "Supports songs in any language. Results may vary with each run.",
+    "main3": "Currently it takes roughly the same time as the song's length."
+  },
+  "mid": {
+    "format": "Accepted formats: MP3, MP4, M4A, WAV, AAC or FLAC",
+    "button": "Extract now!",
+    "result": "Extracted Results"
+  },
+  "footer": {
+    "policy": "Privacy Policy",
+    "about": "About the Developer",
+    "accepted": "Request is accepted! Now processing..."
+  }
+}

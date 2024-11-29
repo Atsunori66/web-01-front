@@ -1,44 +1,84 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { LanguageIcon, ChevronDownIcon, XMarkIcon, ClipboardDocumentIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
-import { textList } from "./textList";
 import axios from "axios";
+// import { textList } from "./textList";
+
+import { Locale } from "@/i18n-config";
+import { getDictionary } from "@/get-dictionary";
 
 // デフォルトの bodyParser を無効化
 export const config = {
-  api : {
+  api: {
     bodyParser : false
   }
 };
+
 const today = new Date();
 
-export default function Home() {
+export default function Home(
+  props: {
+    params: Promise<{ lang: Locale }>;
+  }
+) {
+
+  type Dictionary = {
+    top: {
+      headLine: string;
+      main1: string;
+      main2: string;
+      main3: string;
+    };
+    mid: {
+      format: string;
+      button: string;
+      result: string;
+    };
+    footer: {
+      policy: string;
+      about: string;
+      accepted: string;
+    };
+  };
+
+  const [dictionary, setDictionary] = useState<Dictionary>({
+    top: {
+      headLine: '',
+      main1: '',
+      main2: '',
+      main3: '',
+    },
+    mid: {
+      format: '',
+      button: '',
+      result: '',
+    },
+    footer: {
+      policy: '',
+      about: '',
+      accepted: '',
+    },
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { lang } = await props.params;
+      const dict = await getDictionary(lang);
+      setDictionary(dict);
+    };
+    fetchData();
+  }, [props.params]);
+
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [returned, setReturned] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [lang, setLang] = useState("en");
-
-  let texts = textList.textEn;
-  if (lang == "es") {
-    texts = textList.textEs
-  } else if (lang == "fr") {
-    texts = textList.textFr
-  } else if (lang == "ja") {
-    texts = textList.textJa
-  } else if (lang == "zh") {
-    texts = textList.textZh
-  } else if (lang == "kr") {
-    texts = textList.textKr
-  } else {
-    texts = textList.textEn
-  };
 
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
@@ -100,7 +140,7 @@ export default function Home() {
       if (res.status === 202) {
         setAccepted(true);
         setLoading(false);
-        setMsg(texts.textAccepted);
+        setMsg(dictionary.footer.accepted);
         const trackingUrl = res.headers.location;
         pollForResult(trackingUrl);
       };
@@ -121,18 +161,20 @@ export default function Home() {
 
       <header className="flex gap-4 p-4">
         <div className="flex">
-        <Image
-          className="mr-auto"
-          src="/images/Lyrixer_icon.svg"
-          alt="lyrixer icon"
-          width={40}
-          height={40}
+          <Image
+            className="mr-auto"
+            src="/images/Lyrixer_icon.svg"
+            alt="lyrixer icon"
+            width={40}
+            height={40}
+            unoptimized
           />
-        <Image
-          src="/images/Lyrixer_logo.svg"
-          alt="lyrixer logo"
-          width={100}
-          height={40}
+          <Image
+            src="/images/Lyrixer_logo.svg"
+            alt="lyrixer logo"
+            width={100}
+            height={40}
+            unoptimized
           />
         </div>
 
@@ -155,59 +197,103 @@ export default function Home() {
           >
             <div className="py-1">
               <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                {/* <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("en") }
+                > */}
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/en" }
                 >
                   English
-                </div>
-                {/* </a> */}
+                </Link>
+                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                {/* <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("es") }
+                > */}
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/es" }
                 >
                   Español
-                </div>
+                </Link>
+                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                {/* <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("fr") }
                 >
+                </div> */}
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/fr" }
+                >
                   Français
-                </div>
+                </Link>
               </MenuItem>
               <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/de" }
+                >
+                  Deutsch
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {/* <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("ja") }
                 >
-                  日本語
-                </div>
-              </MenuItem>
-              <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                </div> */}
+                <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLang("zh") }
+                  href={ "/ja" }
                 >
-                  中文
-                </div>
+                  日本語
+                </Link>
               </MenuItem>
               <MenuItem>
-                <div className="block px-4 py-2 text-sm
+                {/* <div className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  onClick={ () => setLang("ch") }
+                >
+                </div> */}
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/ch" }
+                >
+                  中文
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                {/* <div className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                   onClick={ () => setLang("kr") }
                 >
+                </div> */}
+                <Link className="block px-4 py-2 text-sm
+                  text-gray-700 dark:text-gray-200
+                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                  href={ "/kr" }
+                >
                   한국어
-                </div>
+                </Link>
               </MenuItem>
             </div>
           </MenuItems>
@@ -233,18 +319,18 @@ export default function Home() {
         {/* Main Texts section */}
         <div>
           <div className="pb-4 text-2xl">
-            { texts.textMain0 }
+            { dictionary.top.headLine }
           </div>
           <div>
             <ul className="list-inside text-sm md:text-base font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
-                { texts.textMain1 }
+                { dictionary.top.main1 }
               </li>
               <li className="pl-4 pb-4 list-disc">
-                { texts.textMain2 }
+                { dictionary.top.main2 }
               </li>
               <li className="pl-4 pb-4 list-disc">
-                { texts.textMain3 }
+                { dictionary.top.main3 }
               </li>
             </ul>
           </div>
@@ -282,7 +368,7 @@ export default function Home() {
                 onChange={ getInput }
               />
                 <div className="text-sm">
-                  { texts.textFormat }
+                  { dictionary.mid.format }
                 </div>
             </label>
           </form>
@@ -301,7 +387,7 @@ export default function Home() {
               true
             }
           >
-            { texts.textButton }
+            { dictionary.mid.button }
           </button>
         </div>
 
@@ -309,10 +395,10 @@ export default function Home() {
         <div className="pt-6">
           <div className="flex">
             <div className="font-semibold">
-              { texts.textResult }
+              { dictionary.mid.result }
             </div>
             {
-              returned == false ?
+              returned == true ?
               <div className="flex">
                 {
                   copied == true ?
@@ -358,7 +444,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <DocumentTextIcon className="h-5 w-5"></DocumentTextIcon>
-          { texts.textPolicy }
+          { dictionary.footer.policy }
         </Link>
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -373,7 +459,7 @@ export default function Home() {
             width={20}
             height={20}
           />
-          { texts.textAbout }
+          { dictionary.footer.about }
         </Link>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita

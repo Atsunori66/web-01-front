@@ -1,0 +1,18 @@
+{
+  "top": {
+    "headLine": "Extrayez les paroles de n'importe quelle chanson !",
+    "main1": "Sélectionne ton fichier audio et attends que le traitement soit terminé.",
+    "main2": "Compatible avec les chansons dans toutes les langues. Les résultats peuvent varier à chaque essai.",
+    "main3": "Actuellement, cela prend à peu près la même durée que la chanson."
+  },
+  "mid": {
+    "format": "Formats acceptés : MP3, MP4, M4A, WAV, AAC ou FLAC",
+    "button": "Exécuter !",
+    "result": "Résultats extraits"
+  },
+  "footer": {
+    "policy": "Politique de confidentialité",
+    "about": "À propos du développeur",
+    "accepted": "La demande est acceptée ! Traitement en cours..."
+  }
+}

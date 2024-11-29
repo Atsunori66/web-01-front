@@ -29,7 +29,7 @@ export const textList = {
     textMain2: "Compatible avec les chansons dans toutes les langues. Les résultats peuvent varier à chaque essai.",
     textMain3: "Actuellement, cela prend à peu près la même durée que la chanson.",
     textFormat: "Formats acceptés : MP3, MP4, M4A, WAV, AAC ou FLAC",
-    textButton: "Extrais maintenant !",
+    textButton: "Exécuter !",
     textResult: "Résultats extraits",
     textPolicy: "Politique de confidentialité",
     textAbout: "À propos du développeur",
