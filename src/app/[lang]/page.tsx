@@ -353,7 +353,7 @@ export default function Home(
         </Menu>
 
         <button className="place-self-center gap-4"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : resolvedTheme === "light" ? "dark" : "system")}
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
           {
             resolvedTheme === "light" ?
