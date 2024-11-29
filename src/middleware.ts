@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { i18n } from "./app/i18n/i18n-config";
@@ -22,28 +23,6 @@ function getLocale(req: NextRequest): string | undefined {
   const matchedLocale = match(languages, locales, defaultLocale);
   return matchedLocale;
 };
-
-// export function middleware(request: NextRequest) {
-//   const pathname = request.nextUrl.pathname;
-
-//   const pathnameIsMissingLocale = i18n.locales.every(
-//     (locale) =>
-//       !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-//   );
-
-//   if (pathnameIsMissingLocale) {
-//     const locale = getLocale(request);
-//     return NextResponse.redirect(
-//       new URL(
-//         `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-//         request.url,
-//       ),
-//     );
-//   };
-
-//   return NextResponse.next();
-// };
-
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -75,4 +54,3 @@ export function middleware(request: NextRequest) {
 
   return NextResponse.next();
 };
-

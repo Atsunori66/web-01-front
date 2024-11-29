@@ -7,10 +7,10 @@ const nextConfig = {
 export default nextConfig;
 
 // module.exports = {
-//   // i18n: {
-//   //   locales: ['en', 'ja'],
-//   //   defaultLocale: 'en',
-//   // }
+//   i18n: {
+//     locales: ['en', 'ja'],
+//     defaultLocale: 'en',
+//   },
 //   basePath: '',
 //   images: {
 //     domains: [],

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
 import { i18n, type Locale } from "../i18n/i18n-config";
+import { Providers } from "../providers";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export async function generateStaticParams() {
 // }: Readonly<{
 //   children: React.ReactNode;
 // }>) {
+
 export default async function RootLayout(props: {
   children: React.ReactNode;
   params: Promise<{ lang: Locale }>;
@@ -36,11 +38,11 @@ export default async function RootLayout(props: {
   const params = await props.params;
   const { children } = props;
   return (
-    <html lang={ params.lang }>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        { children }
+    <html lang={ params.lang } suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
+          { children }
+        </Providers>
       </body>
     </html>
   );
