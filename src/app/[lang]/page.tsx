@@ -110,6 +110,7 @@ export default function Home(
   async function sendPost() {
     if (files.length === 0) return;
     setLoading(true);
+    setReturned(false);
 
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -369,23 +370,23 @@ export default function Home(
         </div>
 
         {/* Extracted Result section */}
-        <div className="pt-6">
+        <div className="pt-4">
           <div className="flex">
             <div className="font-semibold">
               { dictionary.mid.result }
             </div>
             {
-              returned == true ?
+              accepted == false && returned == true ?
               <div className="flex">
                 {
                   copied == true ?
-                  <span className="absolute ml-32 md:ml-16 font-bold">
+                  <span className="absolute ml-40 md:ml-24 font-bold text-sm">
                     Copied!
                   </span>
                   : ""
                 }
                 <ClipboardDocumentIcon
-                  className="relative h-5 w-5 ml-52 md:ml-36 cursor-pointer justify-self-end"
+                  className="relative h-5 w-5 ml-56 md:ml-40 cursor-pointer justify-self-end"
                   onClick={ copyResult }>
                 </ClipboardDocumentIcon>
               </div>
@@ -394,7 +395,7 @@ export default function Home(
           </div>
           <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
             break-words text-wrap
-            whitespace-pre-wrap p-2 mt-4 rounded-xl
+            whitespace-pre-wrap p-2 mt-2 rounded-xl shadow-lg
             box-border border-2 border-gray-400 bg-zinc-50 dark:bg-zinc-700"
           >
             {
