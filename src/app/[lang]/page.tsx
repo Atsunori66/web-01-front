@@ -10,7 +10,6 @@ import {
   XMarkIcon, ClipboardDocumentIcon, DocumentTextIcon
 } from "@heroicons/react/24/outline";
 import axios from "axios";
-// import { textList } from "../textList";
 
 import { Locale } from "../i18n/i18n-config";
 import { getDictionary } from "../i18n/get-dictionary";
@@ -25,51 +24,11 @@ export const config = {
 
 const today = new Date();
 
-// export async function getHead(context: any) {
-//   const acceptLanguage = context.req.headers["accept-language"];
-//   const defaultLanguage = "en";
-
-//   // ヘッダーから言語を判定
-//   const preferredLanguage = acceptLanguage?.split(",")[0]?.split("-")[0] || defaultLanguage;
-
-//   // サポートされていない言語はデフォルトにフォールバック
-//   const supportedLanguages = ["en", "es", "fr", "de", "ja", "ch", "ko"];
-//   const initialLanguage = supportedLanguages.includes(preferredLanguage)
-//     ? preferredLanguage
-//     : defaultLanguage;
-
-//   return {
-//     props: {
-//       initialLanguage,
-//     }
-//   };
-// };
-
 export default function Home(
   props: {
     params: Promise<{ lang: Locale }>;
   }
-  // { initialLanguage }: { initialLanguage: string }
 ) {
-  // const [language, setLanguage] = useState(initialLanguage);
-
-  // let texts = textList.textEn;
-  // if (language == "es") {
-  //   texts = textList.textEs;
-  // } else if (language == "fr") {
-  //   texts = textList.textFr;
-  // } else if (language == "de") {
-  //   texts = textList.textDe;
-  // } else if (language == "ja") {
-  //   texts = textList.textJa;
-  // } else if (language == "zh") {
-  //   texts = textList.textZh;
-  // } else if (language == "ko") {
-  //   texts = textList.textko;
-  // } else {
-  //   texts = textList.textEn;
-  // };
-
   type Dictionary = {
     top: {
       headLine: string;
@@ -187,7 +146,6 @@ export default function Home(
         setAccepted(true);
         setLoading(false);
         setMsg(dictionary.footer.accepted);
-        // setMsg(texts.accepted);
         const trackingUrl = res.headers.location;
         pollForResult(trackingUrl);
       };
@@ -214,7 +172,7 @@ export default function Home(
             alt="lyrixer icon"
             width={40}
             height={40}
-            unoptimized
+            unoptimized={true}
             priority={true}
           />
           <Image
@@ -222,7 +180,7 @@ export default function Home(
             alt="lyrixer logo"
             width={100}
             height={40}
-            unoptimized
+            unoptimized={true}
             priority={true}
           />
         </div>
@@ -246,11 +204,6 @@ export default function Home(
           >
             <div className="py-1">
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLanguage("en") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -259,14 +212,8 @@ export default function Home(
                 >
                   English
                 </Link>
-                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLanguage("es") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -275,14 +222,8 @@ export default function Home(
                 >
                   Español
                 </Link>
-                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLanguage("fr") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -291,14 +232,8 @@ export default function Home(
                   >
                   Français
                 </Link>
-                  {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLanguage("de") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -307,14 +242,8 @@ export default function Home(
                   >
                   Deutsch
                 </Link>
-                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLanguage("ja") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -323,14 +252,8 @@ export default function Home(
                   >
                   日本語
                 </Link>
-                {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLang("ch") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -339,14 +262,8 @@ export default function Home(
                   >
                   中文
                 </Link>
-                  {/* </div> */}
               </MenuItem>
               <MenuItem>
-                {/* <div className="block px-4 py-2 text-sm
-                  text-gray-700 dark:text-gray-200
-                  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                  onClick={ () => setLang("ko") }
-                > */}
                 <Link className="block px-4 py-2 text-sm
                   text-gray-700 dark:text-gray-200
                   data-[focus]:bg-gray-100 data-[focus]:text-gray-900
@@ -355,7 +272,6 @@ export default function Home(
                   >
                   한국어
                 </Link>
-                  {/* </div> */}
               </MenuItem>
             </div>
           </MenuItems>
@@ -379,81 +295,77 @@ export default function Home(
         <div>
           <div className="pb-4 text-2xl">
             { dictionary.top.headLine }
-            {/* { texts.headLine } */}
           </div>
           <div>
             <ul className="list-inside text-sm md:text-base font-[family-name:var(--font-geist-mono)]">
               <li className="pl-4 pb-4 list-disc">
                 { dictionary.top.main1 }
-                {/* { texts.main1 } */}
               </li>
               <li className="pl-4 pb-4 list-disc">
                 { dictionary.top.main2 }
-                {/* { texts.main2 } */}
               </li>
               <li className="pl-4 pb-4 list-disc">
                 { dictionary.top.main3 }
-                {/* { texts.main3 } */}
               </li>
             </ul>
           </div>
         </div>
 
         {/* File Upload section */}
-        <div className="flex justify-center gap-8">
-          <form className="justify-center items-center space-x-6">
-            <div className="flex">
-              <div className="ml-6 text-lg">
-                { uploaded == true ? fileName : "" }
-              </div>
-              {
-                uploaded == true ?
-                <XMarkIcon
-                  className="ml-auto -mr-10 h-6 w-6 text-slate-400 cursor-pointer"
-                  onClick={ cancelInput }
-                >
-                </XMarkIcon>
-                : ""
-              }
+        <div className="grid justify-center gap-2">
+          <div className="flex">
+            <div className="ml-6 text-lg">
+              { uploaded == true ? fileName : "" }
             </div>
-            <label className="block min-w-fit max-w-sm">
-              <input
-                type="file"
-                name="inputFile"
-                accept=".mp3, .mp4, .m4a, .wav, .aac, .flac"
-                ref={inputFileRef}
-                className="block w-full text-sm text-slate-500 py-2 file:cursor-pointer
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-full file:border-0
-                file:text-sm file:font-semibold
-                file:bg-blue-50 file:text-blue-700
-                hover:file:bg-blue-100"
-                onChange={ getInput }
-              />
+            {
+              uploaded == true ?
+              <XMarkIcon
+                className="ml-auto h-6 w-6 text-slate-400 cursor-pointer"
+                onClick={ cancelInput }
+              >
+              </XMarkIcon>
+              : ""
+            }
+          </div>
+          <div className="flex justify-center gap-4">
+            <form className="justify-center items-center space-x-6">
+              <label className="block min-w-fit max-w-sm">
+                <input
+                  type="file"
+                  name="inputFile"
+                  accept=".mp3, .mp4, .m4a, .wav, .aac, .flac"
+                  ref={inputFileRef}
+                  className="w-full text-sm text-slate-500 py-2 file:cursor-pointer
+                  file:mr-2 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-blue-50 file:text-blue-700
+                  hover:file:bg-blue-100"
+                  onChange={ getInput }
+                  />
                 <div className="text-sm">
                   { dictionary.mid.format }
-                  {/* { texts.format } */}
                 </div>
-            </label>
-          </form>
+              </label>
+            </form>
 
-          <button className="p-4 min-h-16 h-auto min-w-24 w-auto justify-self-center self-end
-            bg-blue-400 hover:bg-blue-500 active:bg-blue-600
-            text-white font-bold rounded-2xl text-sm md:text-base
-            pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
-            disabled:bg-gray-300 disabled:cursor-not-allowed"
-            onClick={ sendPost }
-            disabled={
-              (uploaded == true && loading == false && accepted == false) && (returned == true || msg == null) ? false
-              :
-              uploaded == false || loading == true || accepted == true ? true
-              :
-              true
-            }
-          >
-            { dictionary.mid.button }
-            {/* { texts.button } */}
-          </button>
+            <button className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-center
+              bg-blue-400 hover:bg-blue-500 active:bg-blue-600
+              text-white font-bold rounded-2xl
+              pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
+              disabled:bg-gray-300 disabled:cursor-not-allowed"
+              onClick={ sendPost }
+              disabled={
+                (uploaded == true && loading == false && accepted == false) && (returned == true || msg == null) ? false
+                :
+                uploaded == false || loading == true || accepted == true ? true
+                :
+                true
+              }
+              >
+              { dictionary.mid.button }
+            </button>
+          </div>
         </div>
 
         {/* Extracted Result section */}
@@ -461,7 +373,6 @@ export default function Home(
           <div className="flex">
             <div className="font-semibold">
               { dictionary.mid.result }
-              {/* { texts.result } */}
             </div>
             {
               returned == true ?
@@ -511,7 +422,6 @@ export default function Home(
         >
           <DocumentTextIcon className="h-5 w-5"></DocumentTextIcon>
           { dictionary.footer.policy }
-          {/* { texts.policy } */}
         </Link>
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -527,7 +437,6 @@ export default function Home(
             height={20}
           />
           { dictionary.footer.about }
-          {/* { texts.about } */}
         </Link>
         <div>
           © {today.getFullYear().toString()} Atsuki Sumita
