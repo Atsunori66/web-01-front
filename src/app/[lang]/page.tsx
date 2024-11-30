@@ -364,9 +364,9 @@ export default function Home(
         >
           {
             resolvedTheme === "dark" ?
-            <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-white"></SunIcon>
+            <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-orange-300"></SunIcon>
             :
-            <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-blue-700 fill-white"></MoonIcon>
+            <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-yellow-300 fill-yellow-300"></MoonIcon>
           }
         </button>
       </header>
@@ -435,9 +435,9 @@ export default function Home(
             </label>
           </form>
 
-          <button className="p-4 min-h-16 h-auto min-w-20 w-auto justify-self-center self-end
+          <button className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-end
             bg-blue-400 hover:bg-blue-500 active:bg-blue-600
-            text-white font-bold rounded-2xl
+            text-white font-bold rounded-2xl text-sm md:text-base
             pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
             disabled:bg-gray-300 disabled:cursor-not-allowed"
             onClick={ sendPost }
