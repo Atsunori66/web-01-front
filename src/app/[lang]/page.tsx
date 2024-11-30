@@ -215,6 +215,7 @@ export default function Home(
             width={40}
             height={40}
             unoptimized
+            priority={true}
           />
           <Image
             src="/images/Lyrixer_logo.svg"
@@ -222,6 +223,7 @@ export default function Home(
             width={100}
             height={40}
             unoptimized
+            priority={true}
           />
         </div>
 
@@ -435,7 +437,7 @@ export default function Home(
             </label>
           </form>
 
-          <button className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-end
+          <button className="p-4 min-h-16 h-auto min-w-24 w-auto justify-self-center self-end
             bg-blue-400 hover:bg-blue-500 active:bg-blue-600
             text-white font-bold rounded-2xl text-sm md:text-base
             pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
