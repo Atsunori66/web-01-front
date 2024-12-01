@@ -16,9 +16,11 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LyriXer - Our Private Policy",
-  description: "",
-  robots: 'noindex'
-}
+  description: "Our private policy about the service.",
+  robots: {
+    index: false
+  }
+};
 
 export default function RootLayout({
   children,
@@ -34,4 +36,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-}
+};
