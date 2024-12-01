@@ -77,8 +77,8 @@ export default function Home(
   }, [props.params]);
 
   const [msg, setMsg] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [returned, setReturned] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -110,6 +110,8 @@ export default function Home(
   async function sendPost() {
     if (files.length === 0) return;
     setLoading(true);
+    setCopied(false);
+    setReturned(false);
 
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -375,7 +377,7 @@ export default function Home(
               { dictionary.mid.result }
             </div>
             {
-              returned == true ?
+              returned == true && msg != null ?
               <div className="flex">
                 {
                   copied == true ?
