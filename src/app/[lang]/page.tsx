@@ -110,7 +110,6 @@ export default function Home(
   async function sendPost() {
     if (files.length === 0) return;
     setLoading(true);
-    setReturned(false);
 
     const formData = new FormData();
     formData.append("file", files[0]);
@@ -376,7 +375,7 @@ export default function Home(
               { dictionary.mid.result }
             </div>
             {
-              accepted == false && returned == true ?
+              returned == true ?
               <div className="flex">
                 {
                   copied == true ?
