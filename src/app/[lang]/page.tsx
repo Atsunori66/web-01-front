@@ -280,10 +280,10 @@ export default function Home(
         </Menu>
 
         <button className="place-self-center gap-4"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
         >
           {
-            resolvedTheme === "dark" ?
+            resolvedTheme === "light" ?
             <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-orange-300"></SunIcon>
             :
             <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-yellow-300 fill-yellow-300"></MoonIcon>
