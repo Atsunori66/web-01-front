@@ -344,7 +344,7 @@ export default function Home(
                   file:bg-blue-50 file:text-blue-700
                   hover:file:bg-blue-100"
                   onChange={ getInput }
-                  />
+                />
                 <div className="text-sm">
                   { dictionary.mid.format }
                 </div>

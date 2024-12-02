@@ -23,14 +23,16 @@ const CookieBanner = () => {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  // if (!isVisible) return null;
 
   return (
     <div
-      className="fixed bottom-0 w-full text-lg bg-zinc-100 p-2 border border-black"
+      className="fixed bottom-0 w-full text-lg text-black bg-slate-100 p-2 rounded-xl"
     >
-      We use cookies to display personalized advertisements based on users' interest.
-      <div className="flex justify-center gap-8">
+      <div className="p-2">
+        We use cookies to display personalized advertisements based on users' interest.
+      </div>
+      <div className="flex justify-center gap-10">
         <button
           className="rounded-full px-6 py-2 font-bold text-white bg-green-400"
           onClick={handleAccept}
