@@ -10,10 +10,10 @@ import {
   XMarkIcon, ClipboardDocumentIcon, DocumentTextIcon
 } from "@heroicons/react/24/outline";
 import axios from "axios";
+import { useTheme } from "next-themes";
 
 import { Locale } from "../i18n/i18n-config";
 import { getDictionary } from "../i18n/get-dictionary";
-import { useTheme } from "next-themes";
 
 // デフォルトの bodyParser を無効化
 export const config = {

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "../globals.css";
 import { i18n, type Locale } from "../i18n/i18n-config";
 import { Providers } from "../providers";
+import CookieBanner from "../components/cookie-banner"
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -42,6 +43,7 @@ export default async function RootLayout(props: {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           { children }
+          <CookieBanner/>
         </Providers>
       </body>
     </html>
