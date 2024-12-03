@@ -6,7 +6,7 @@
     "main3": "Derzeit dauert es etwa so lange wie die Länge des Songs."
   },
   "mid": {
-    "format": "Akzeptierte Formate: MP3, MP4, M4A, WAV, AAC oder FLAC",
+    "format": "Akzeptierte Formate: MP3, M4A, AAC, WAV, FLAC oder AIFF",
     "button": "Ausführen!",
     "result": "Extrahierte Ergebnisse"
   },

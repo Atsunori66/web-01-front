@@ -335,7 +335,7 @@ export default function Home(
                 <input
                   type="file"
                   name="inputFile"
-                  accept=".mp3, .mp4, .m4a, .wav, .aac, .flac"
+                  accept=".mp3, .m4a, .aac, .wav, .flac, .aif, .aiff, .mp4"
                   ref={inputFileRef}
                   className="w-full text-sm text-slate-500 py-2 file:cursor-pointer
                   file:mr-2 file:py-2 file:px-4

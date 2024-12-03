@@ -6,7 +6,7 @@
     "main3": "目前，处理时间与歌曲的时间大致相同。"
   },
   "mid": {
-    "format": "支持的格式: MP3, MP4, M4A, WAV, AAC 或 FLAC",
+    "format": "支持的格式: MP3、M4A、AAC、WAV、FLAC 或 AIFF",
     "button": "运行！",
     "result": "提取结果"
   },

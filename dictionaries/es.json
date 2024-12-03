@@ -6,7 +6,7 @@
     "main3": "Actualmente tiene aproximadamente la misma duración que la canción."
   },
   "mid": {
-    "format": "Formatos aceptados: MP3, MP4, M4A, WAV, AAC o FLAC",
+    "format": "Formatos aceptados: MP3, M4A, AAC, WAV, FLAC o AIFF",
     "button": "¡Extraer ahora!",
     "result": "Resultados extraídos"
   },

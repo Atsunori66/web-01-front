@@ -6,7 +6,7 @@
     "main3": "現時点では大体曲と同じ長さの時間がかかります。"
   },
   "mid": {
-    "format": "対応フォーマット: MP3, MP4, M4A, WAV, AAC, FLAC",
+    "format": "対応フォーマット: MP3, M4A, AAC, WAV, FLAC, AIFF",
     "button": "実行！",
     "result": "抽出結果"
   },

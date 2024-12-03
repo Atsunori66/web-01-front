@@ -6,7 +6,7 @@
     "main3": "Actuellement, cela prend à peu près la même durée que la chanson."
   },
   "mid": {
-    "format": "Formats acceptés : MP3, MP4, M4A, WAV, AAC ou FLAC",
+    "format": "Formats acceptés : MP3, M4A, AAC, WAV, FLAC ou AIFF",
     "button": "Exécuter !",
     "result": "Résultats extraits"
   },
