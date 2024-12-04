@@ -4,7 +4,7 @@ import "../globals.css";
 import { i18n, type Locale } from "../i18n/i18n-config";
 import { Providers } from "../providers";
 import CookieBanner from "../components/cookie-banner";
-import GoogleAdsense from "../components/GoogleAdsense";
+import GoogleAdsense from "../components/google-adsense";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -23,8 +23,6 @@ export const metadata: Metadata = {
   description: "Your new favorite lyrics extractor AI and it's completely free.",
 };
 
-const adsenseID = "8206959566181911";
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 };
@@ -34,7 +32,6 @@ export async function generateStaticParams() {
 // }: Readonly<{
 //   children: React.ReactNode;
 // }>) {
-
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
@@ -50,7 +47,7 @@ export default async function RootLayout(props: {
           <CookieBanner/>
         </Providers>
       </body>
-      <GoogleAdsense pId={adsenseID} />
+      <GoogleAdsense/>
     </html>
   );
 };

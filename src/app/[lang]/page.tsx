@@ -189,8 +189,8 @@ export default function Home(
 
         <Menu as="div" className="place-self-center ml-auto">
           <MenuButton className="inline-flex gap-x-1.5 rounded-md
-           bg-white dark:bg-black text-gray-900 dark:text-gray-50
-           p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
+            bg-white dark:bg-black text-gray-900 dark:text-gray-50
+            p-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-800">
             <LanguageIcon aria-hidden="true" className="-mr-1 h-5 w-5"/>
             Language
             <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-gray-400"/>
@@ -199,10 +199,10 @@ export default function Home(
           <MenuItems
             transition
             className="absolute z-10 mt-2 origin-top-right rounded-md
-            bg-white dark:bg-black text-black dark:text-white shadow-lg
-            ring-1 ring-black ring-opacity-5 transition focus:outline-none
-            data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0
-            data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+              bg-white dark:bg-black text-black dark:text-white shadow-lg
+              ring-1 ring-black ring-opacity-5 transition focus:outline-none
+              data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0
+              data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
           >
             <div className="py-1">
               <MenuItem>
@@ -286,7 +286,10 @@ export default function Home(
             resolvedTheme === "light" ?
             <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-orange-300"></SunIcon>
             :
+            resolvedTheme === "dark" ?
             <MoonIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-yellow-300 fill-yellow-300"></MoonIcon>
+            :
+            <SunIcon aria-hidden="true" className="-mr-1 h-5 w-5 stroke-orange-300 fill-orange-300"></SunIcon>
           }
         </button>
       </header>
@@ -317,10 +320,10 @@ export default function Home(
         <div className="grid justify-center gap-2">
           <div className="flex">
             <div className="ml-6 text-lg">
-              { uploaded == true ? fileName : "" }
+              { uploaded === true ? fileName : "" }
             </div>
             {
-              uploaded == true ?
+              uploaded === true ?
               <XMarkIcon
                 className="ml-auto h-6 w-6 text-slate-400 cursor-pointer"
                 onClick={ cancelInput }
@@ -338,11 +341,11 @@ export default function Home(
                   accept=".mp3, .m4a, .aac, .wav, .flac, .aif, .aiff, .mp4"
                   ref={inputFileRef}
                   className="w-full text-sm text-slate-500 py-2 file:cursor-pointer
-                  file:mr-2 file:py-2 file:px-4
-                  file:rounded-full file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-blue-50 file:text-blue-700
-                  hover:file:bg-blue-100"
+                    file:mr-2 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100"
                   onChange={ getInput }
                 />
                 <div className="text-sm">
@@ -351,16 +354,17 @@ export default function Home(
               </label>
             </form>
 
-            <button className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-center
-              bg-blue-400 hover:bg-blue-500 active:bg-blue-600
-              text-white font-bold rounded-2xl
-              pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
-              disabled:bg-gray-300 disabled:cursor-not-allowed"
+            <button
+              className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-center
+                bg-blue-400 hover:bg-blue-500 active:bg-blue-600
+                text-white font-bold rounded-2xl
+                  pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
+                disabled:bg-gray-300 disabled:cursor-not-allowed"
               onClick={ sendPost }
               disabled={
-                (uploaded == true && loading == false && accepted == false) && (returned == true || msg == null) ? false
+                (uploaded === true && loading === false && accepted === false) && (returned === true || msg === null) ? false
                 :
-                uploaded == false || loading == true || accepted == true ? true
+                uploaded === false || loading === true || accepted === true ? true
                 :
                 true
               }
@@ -377,10 +381,10 @@ export default function Home(
               { dictionary.mid.result }
             </div>
             {
-              returned == true && msg != null ?
+              returned === true && msg != null ?
               <div className="flex">
                 {
-                  copied == true ?
+                  copied === true ?
                   <span className="absolute ml-40 md:ml-24 font-bold text-sm">
                     Copied!
                   </span>
@@ -400,7 +404,7 @@ export default function Home(
             box-border border-2 border-gray-400 bg-zinc-50 dark:bg-zinc-700"
           >
             {
-              loading == true ?
+              loading === true ?
               <div className="flex justify-center" aria-label="読み込み中">
                 <div className="animate-ping mt-5 h-1 w-1 bg-blue-400 rounded-full"></div>
                 <div className="animate-ping mt-5 h-1 w-1 bg-blue-400 rounded-full mx-4"></div>
