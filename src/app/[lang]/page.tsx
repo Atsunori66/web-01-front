@@ -83,7 +83,7 @@ export default function Home(
   const [returned, setReturned] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const {setTheme, resolvedTheme }= useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
