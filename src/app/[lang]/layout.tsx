@@ -20,23 +20,18 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LyriXer - Lyrics Extractor AI",
-  description: "Your new favorite lyrics extractor AI and it's completely free.",
+  description: "Discover the ultimate AI lyrics extractor! Quickly and accurately extract lyrics from any song, 100% free.",
 };
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 };
 
-// export default function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-
-export default async function RootLayout(props: {
-  children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
-}) {
+export default async function RootLayout(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ lang: Locale }>;
+  }) {
   const params = await props.params;
   const { children } = props;
   return (
