@@ -21,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "LyriXer - Lyrics Extractor AI",
-  description: "Discover the ultimate AI lyrics extractor! Quickly and accurately extract lyrics from any song, 100% free.",
+  description: "This is your new favorite AI lyrics extractor! Quickly and accurately extract lyrics from any song, 100% free."
 };
 
 export async function generateStaticParams() {
@@ -35,6 +35,8 @@ export default async function RootLayout(
   }) {
   const params = await props.params;
   const { children } = props;
+  const gaID = process.env.GOOGLE_ANALYTICS_ID;
+
   return (
     <html lang={ params.lang } suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -44,7 +46,7 @@ export default async function RootLayout(
         </Providers>
       </body>
       <GoogleAdsense/>
-      <GoogleAnalytics gaId="G-0HMX02YFR3" />
+      { !!gaID && <GoogleAnalytics gaId={gaID} /> }
     </html>
   );
 };
