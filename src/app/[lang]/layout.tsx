@@ -5,7 +5,7 @@ import { i18n, type Locale } from "../i18n/i18n-config";
 import { Providers } from "../providers";
 import CookieBanner from "../components/cookie-banner";
 import GoogleAdsense from "../components/google-adsense";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -37,9 +37,6 @@ export default async function RootLayout(
   const { children } = props;
   return (
     <html lang={ params.lang } suppressHydrationWarning>
-      {!!process.env.GOOGLE_ANALYTICS_ID && (
-        <GoogleTagManager gtmId={process.env.GOOGLE_ANALYTICS_ID} />
-      )}
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           { children }
@@ -47,6 +44,7 @@ export default async function RootLayout(
         </Providers>
       </body>
       <GoogleAdsense/>
+      <GoogleAnalytics gaId="G-0HMX02YFR3" />
     </html>
   );
 };
