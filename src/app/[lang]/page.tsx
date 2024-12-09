@@ -121,7 +121,7 @@ export default function Home(
       const res = await axios.post(
         "./api",
         formData,
-        { timeout: 600000 }
+        { timeout: 120000 }
       );
 
       const pollForResult = async (trackingUrl: string) => {
@@ -135,7 +135,7 @@ export default function Home(
               setReturned(true);
               break;
             };
-            await new Promise((resolve) => setTimeout(resolve, 5000));
+            await new Promise((resolve) => setTimeout(resolve, 10000));
           };
         } catch (error: unknown) {
           if (error instanceof Error) {

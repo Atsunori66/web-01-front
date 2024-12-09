@@ -7,6 +7,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 const url = process.env.LOGIC_APP_STANDARD_URL;
 const accountName = process.env.AZURE_STORAGE_ACCOUNT_NAME;
+const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
 
 const blobServiceClient = new BlobServiceClient(
   `https://${accountName}.blob.core.windows.net`,
@@ -18,8 +19,7 @@ export async function POST(req: Request) {
   const file = incomingFormData.get("file")
   const fileName = incomingFormData.get("fileName")!.toString()
 
-  const containerName = "00-landing";
-  const containerClient = blobServiceClient.getContainerClient(containerName);
+  const containerClient = blobServiceClient.getContainerClient(containerName!);
   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
 
   const formData = new FormData();
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       formData,
       {
         headers: formData.getHeaders(),
-        timeout: 600000
+        timeout: 300000
       }
     );
 
