@@ -7,19 +7,21 @@ import { Providers } from "../providers";
 import CookieBanner from "../components/cookie-banner";
 import GoogleAdsense from "../components/google-adsense";
 import { GoogleAnalytics } from "@next/third-parties/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 
+// opengraph-image が動的ルートに未対応
 export const metadata: Metadata = {
   title: "LyriXer - Lyrics Extractor AI",
   description: "This is your new favorite AI lyrics extractor! Quickly and accurately extract lyrics from any song, 100% free.",
-  openGraph: {
-    title: "LyriXer - Lyrics Extractor AI",
-    description: "Extracts lyrics from any song. 100% free."
-  },
-  twitter: {
-    title: "LyriXer - Lyrics Extractor AI",
-    description: "Extracts lyrics from any song. 100% free.",
-    card: "summary_large_image"
-  }
+  // openGraph: {
+  //   title: "LyriXer - Lyrics Extractor AI",
+  //   description: "Extracts lyrics from any song. 100% free."
+  // },
+  // twitter: {
+  //   title: "LyriXer - Lyrics Extractor AI",
+  //   description: "Extracts lyrics from any song. 100% free.",
+  //   card: "summary_large_image"
+  // }
 };
 
 export async function generateStaticParams() {
