@@ -187,6 +187,7 @@ export default function Home(
           />
         </div>
 
+        {/* 表示言語変更メニュー */}
         <Menu as="div" className="place-self-center ml-auto">
           <MenuButton className="inline-flex gap-x-1.5 rounded-md
             bg-white dark:bg-black text-gray-900 dark:text-gray-50
@@ -279,6 +280,7 @@ export default function Home(
           </MenuItems>
         </Menu>
 
+        {/* テーマカラートグルボタン */}
         <button className="place-self-center gap-4"
           onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
         >
@@ -297,8 +299,8 @@ export default function Home(
       <main className="grid grid-rows-1 gap-6 p-6">
 
         {/* Main Texts section */}
-        <div>
-          <div className="pb-4 text-2xl">
+        <div className="justify-items-center">
+          <div className="pb-4 font-semibold text-2xl">
             { dictionary.top.headLine }
           </div>
           <div>
@@ -376,29 +378,32 @@ export default function Home(
 
         {/* Extracted Result section */}
         <div className="pt-4">
-          <div className="flex">
-            <div className="font-semibold">
+          <div className="flex pb-2
+          md:pl-16 lg:pl-32 xl:pl-40 2xl:pl-48
+          md:ml-16 lg:ml-32 xl:ml-40 2xl:ml-48
+          gap-12 md:gap-32 lg:gap-64 xl:gap-80 2xl:gap-96">
+            <div className="font-semibold min-w-48">
               { dictionary.mid.result }
             </div>
             {
               returned === true && msg != null ?
-              <div className="flex">
+              <div className="flex gap-4">
+                <ClipboardDocumentIcon
+                  className="h-5 w-5 cursor-pointer"
+                  onClick={ copyResult }>
+                </ClipboardDocumentIcon>
                 {
                   copied === true ?
-                  <span className="absolute ml-40 md:ml-24 font-bold text-sm">
+                  <span className="font-bold text-sm">
                     Copied!
                   </span>
                   : ""
                 }
-                <ClipboardDocumentIcon
-                  className="relative h-5 w-5 ml-56 md:ml-40 cursor-pointer justify-self-end"
-                  onClick={ copyResult }>
-                </ClipboardDocumentIcon>
               </div>
               : ""
             }
           </div>
-          <div className="justify-self-center min-h-40 h-auto w-full md:w-7/12
+          <div className="justify-self-center min-h-40 h-auto w-full md:w-1/2
             break-words text-wrap
             whitespace-pre-wrap p-2 mt-2 rounded-xl shadow-lg
             box-border border-2 border-gray-400 bg-zinc-50 dark:bg-zinc-700"
@@ -445,7 +450,7 @@ export default function Home(
           { dictionary.footer.about }
         </Link>
         <div>
-          © {today.getFullYear().toString()} Atsuki Sumita
+          © {today.getFullYear().toString()} lyrixer.com
         </div>
       </footer>
     </div>

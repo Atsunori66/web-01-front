@@ -155,7 +155,7 @@ export default function Policy() {
 
       <footer className="flex gap-4 p-4 justify-center">
         <div>
-          © {today.getFullYear().toString()} Atsuki Sumita
+          © {today.getFullYear().toString()} lyrixer.com
         </div>
       </footer>
 
