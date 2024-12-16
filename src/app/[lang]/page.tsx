@@ -15,6 +15,8 @@ import { useTheme } from "next-themes";
 import { Locale } from "../i18n/i18n-config";
 import { getDictionary } from "../i18n/get-dictionary";
 
+import targetLangList from "../targetLangList.json";
+
 // デフォルトの bodyParser を無効化
 export const config = {
   api: {
@@ -89,6 +91,11 @@ export default function Home(
   const [files, setFiles] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string>("");
 
+  const [targetLang, setTargetLang] = useState("auto-detect");
+  const handleSelect = (language: string) => {
+    setTargetLang(language);
+  };
+
   function getInput(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.target.files || []);
     if (selectedFiles.length > 0) {
@@ -116,6 +123,7 @@ export default function Home(
     const formData = new FormData();
     formData.append("file", files[0]);
     formData.append("fileName", fileName);
+    formData.append("targetLang", targetLang);
 
     try {
       const res = await axios.post(
@@ -319,7 +327,7 @@ export default function Home(
         </div>
 
         {/* File Upload section */}
-        <div className="grid justify-center gap-2">
+        <div className="grid justify-center gap-4">
           <div className="flex">
             <div className="ml-6 text-lg">
               { uploaded === true ? fileName : "" }
@@ -334,7 +342,7 @@ export default function Home(
               : ""
             }
           </div>
-          <div className="flex justify-center gap-4">
+          <div className="grid md:flex justify-center gap-4">
             <form className="justify-center items-center space-x-6">
               <label className="block min-w-fit max-w-sm">
                 <input
@@ -356,23 +364,86 @@ export default function Home(
               </label>
             </form>
 
-            <button
-              className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-center
-                bg-blue-400 hover:bg-blue-500 active:bg-blue-600
-                text-white font-bold rounded-2xl
-                  pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
-                disabled:bg-gray-300 disabled:cursor-not-allowed"
-              onClick={ sendPost }
-              disabled={
-                (uploaded === true && loading === false && accepted === false) && (returned === true || msg === null) ? false
-                :
-                uploaded === false || loading === true || accepted === true ? true
-                :
-                true
-              }
-              >
-              { dictionary.mid.button }
-            </button>
+            {/* list & button */}
+            <div className="flex gap-6 justify-self-center">
+
+              {/* title & list */}
+              <div className="grid gap-2">
+                <div className="font-semibold mb-2">
+                  Song Language
+                </div>
+
+                {/* targetLang Menu */}
+                <Menu as="div" className="relative inline-block text-left">
+                  <MenuButton className="inline-flex justify-between w-full rounded-md
+                    border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium
+                    text-gray-700 hover:bg-gray-50">
+                    {targetLang}
+                    <ChevronDownIcon className="w-5 h-5 ml-2" aria-hidden="true" />
+                  </MenuButton>
+                  <MenuItems
+                    transition
+                    className="absolute right-0 mt-2 w-full rounded-md
+                    shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none
+                    max-h-64 overflow-y-auto"
+                  >
+                    <div className="py-1">
+
+                      <MenuItem>
+                          <button
+                            className="hover:bg-gray-100 text-gray-900
+                            } block px-4 py-2 text-sm w-full text-left"
+                            onClick={() => handleSelect("auto-detect")}
+                          >
+                            auto-detect
+                          </button>
+                      </MenuItem>
+
+                      {/* 区切り線 */}
+                      <div className="border-t border-gray-200 my-1" />
+
+                      {/* 各言語 */}
+                      {
+                        targetLangList.map((target) => (
+                        <MenuItem key={target.id}>
+                          {
+                            () => (
+                              <button
+                                className="hover:bg-gray-100 text-gray-900
+                                block px-4 py-2 text-sm w-full text-left"
+                                onClick={() => handleSelect(target.lang)}
+                              >
+                              {target.lang}
+                              </button>
+                            )
+                          }
+                        </MenuItem>
+                      )
+                      )}
+                    </div>
+                  </MenuItems>
+                </Menu>
+              </div>
+
+              {/* button */}
+              <button
+                className="p-4 min-h-16 h-auto min-w-28 w-auto justify-self-center self-center
+                  bg-blue-400 hover:bg-blue-500 active:bg-blue-600
+                  text-white font-bold rounded-2xl
+                    pointer-events-auto disabled:shadow-none shadow-md shadow-blue-500/50
+                  disabled:bg-gray-300 disabled:cursor-not-allowed"
+                onClick={ sendPost }
+                disabled={
+                  (uploaded === true && loading === false && accepted === false) && (returned === true || msg === null) ? false
+                  :
+                  uploaded === false || loading === true || accepted === true ? true
+                  :
+                  true
+                }
+                >
+                { dictionary.mid.button }
+              </button>
+            </div>
           </div>
         </div>
 

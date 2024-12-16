@@ -16,8 +16,9 @@ const blobServiceClient = new BlobServiceClient(
 
 export async function POST(req: Request) {
   const incomingFormData = await req.formData();
-  const file = incomingFormData.get("file")
-  const fileName = incomingFormData.get("fileName")!.toString()
+  const file = incomingFormData.get("file");
+  const fileName = incomingFormData.get("fileName")!.toString();
+  const targetLang = incomingFormData.get("targetLang");
 
   const containerClient = blobServiceClient.getContainerClient(containerName!);
   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
 
     // fileName だけを form から送信
     formData.append("fileName", fileName);
+    formData.append("targetLang", targetLang);
   } else {
     return new Response(
       JSON.stringify({
