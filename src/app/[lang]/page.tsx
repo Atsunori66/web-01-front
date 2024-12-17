@@ -40,6 +40,7 @@ export default function Home(
     };
     mid: {
       format: string;
+      targetLang: string;
       button: string;
       result: string;
     };
@@ -52,21 +53,22 @@ export default function Home(
 
   const [dictionary, setDictionary] = useState<Dictionary>({
     top: {
-      headLine: '',
-      main1: '',
-      main2: '',
-      main3: '',
+      headLine: "",
+      main1: "",
+      main2: "",
+      main3: "",
     },
     mid: {
-      format: '',
-      button: '',
-      result: '',
+      format: "",
+      targetLang: "",
+      button: "",
+      result: "",
     },
     footer: {
-      policy: '',
-      about: '',
-      accepted: '',
-    },
+      policy: "",
+      about: "",
+      accepted: "",
+    }
   });
 
   useEffect(() => {
@@ -369,8 +371,8 @@ export default function Home(
 
               {/* title & list */}
               <div className="grid gap-2">
-                <div className="font-semibold mb-2">
-                  Song Language
+                <div className="font-medium mb-2">
+                  { dictionary.mid.targetLang }
                 </div>
 
                 {/* targetLang Menu */}
@@ -405,7 +407,7 @@ export default function Home(
                       {/* 各言語 */}
                       {
                         targetLangList.map((target) => (
-                        <MenuItem key={target.id}>
+                        <MenuItem key={ target.id }>
                           {
                             () => (
                               <button
@@ -413,7 +415,7 @@ export default function Home(
                                 block px-4 py-2 text-sm w-full text-left"
                                 onClick={() => handleSelect(target.lang)}
                               >
-                              {target.lang}
+                              { target.lang }
                               </button>
                             )
                           }

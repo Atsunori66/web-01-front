@@ -7,6 +7,7 @@
   },
   "mid": {
     "format": "支持的格式: MP3、M4A、AAC、WAV、FLAC 或 AIFF",
+    "targetLang": "歌曲语言",
     "button": "运行！",
     "result": "提取结果"
   },

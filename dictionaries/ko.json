@@ -7,6 +7,7 @@
   },
   "mid": {
     "format": "대응 포맷: MP3, M4A, AAC, WAV, FLAC, AIFF",
+    "targetLang": "노래 언어",
     "button": "실행!",
     "result": "추출 결과"
   },

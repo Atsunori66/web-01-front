@@ -7,6 +7,7 @@
   },
   "mid": {
     "format": "対応フォーマット: MP3, M4A, AAC, WAV, FLAC, AIFF",
+    "targetLang": "曲の言語",
     "button": "実行！",
     "result": "抽出結果"
   },
