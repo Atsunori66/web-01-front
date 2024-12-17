@@ -1,9 +1,10 @@
 {
   "top": {
-    "headLine": "Extrahieren Sie Liedtexte aus jedem Song!",
-    "main1": "Laden Sie Ihre Audiodatei hoch und lassen Sie sie von uns verarbeiten.",
-    "main2": "Unterstützt Songs in jeder Sprache. Die Ergebnisse können bei jedem Durchlauf variieren.",
-    "main3": "Derzeit dauert es etwa so lange wie die Länge des Songs."
+    "headLine": "Songtexte aus jedem Lied, in jeder Sprache extrahieren!",
+    "main1": "Lade deine Audiodatei hoch, und wir extrahieren den Songtext für dich.",
+    "main2": "Unterstützt Musik aus der ganzen Welt und bietet automatische Spracherkennung.",
+    "main3": "Die Ergebnisse können jedes Mal variieren - entdecke bei jedem Durchlauf etwas Neues!",
+    "main4": "Die Verarbeitung dauert etwa so lange wie das Lied selbst, und deine Dateien werden niemals gespeichert."
   },
   "mid": {
     "format": "Akzeptierte Formate: MP3, M4A, AAC, WAV, FLAC oder AIFF",

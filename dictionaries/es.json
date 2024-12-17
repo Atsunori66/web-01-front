@@ -1,9 +1,10 @@
 {
   "top": {
-    "headLine": "¡Extrae la letra de cualquier canción!",
-    "main1": "Sube tu archivo de audio y deja que lo procesemos por ti.",
-    "main2": "Funciona con canciones en cualquier idioma. Los resultados pueden variar en cada intento.",
-    "main3": "Actualmente tiene aproximadamente la misma duración que la canción."
+    "headLine": "¡Extrae las letras de cualquier canción, en cualquier idioma!",
+    "main1": "Sube tu archivo de audio y extraeremos la letra por ti.",
+    "main2": "Funciona con música de todo el mundo y permite la detección automática del idioma.",
+    "main3": "Los resultados pueden variar en cada intento: ¡descubre algo nuevo cada vez!",
+    "main4": "El procesamiento tarda aproximadamente lo mismo que la duración de la canción, y tus archivos nunca se almacenan."
   },
   "mid": {
     "format": "Formatos aceptados: MP3, M4A, AAC, WAV, FLAC o AIFF",

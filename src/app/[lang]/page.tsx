@@ -37,6 +37,7 @@ export default function Home(
       main1: string;
       main2: string;
       main3: string;
+      main4: string;
     };
     mid: {
       format: string;
@@ -57,6 +58,7 @@ export default function Home(
       main1: "",
       main2: "",
       main3: "",
+      main4: ""
     },
     mid: {
       format: "",
@@ -323,6 +325,9 @@ export default function Home(
               </li>
               <li className="pl-4 pb-4 list-disc">
                 { dictionary.top.main3 }
+              </li>
+              <li className="pl-4 pb-4 list-disc">
+                { dictionary.top.main4 }
               </li>
             </ul>
           </div>

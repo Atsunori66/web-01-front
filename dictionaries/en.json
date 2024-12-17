@@ -1,9 +1,10 @@
 {
   "top": {
-    "headLine": "Extract lyrics from any song!",
-    "main1": "Upload your audio file and let us process it for you.",
-    "main2": "Supports songs in any language. Results may vary with each run.",
-    "main3": "Currently it takes roughly the same time as the song's length."
+    "headLine": "Extract lyrics from any song, in any language!",
+    "main1": "Upload your audio file, and we'll extract the lyrics for you.",
+    "main2": "Works with music from around the world and supports automatic language detection.",
+    "main3": "Results may vary each time - discover something new with every run!",
+    "main4": "Processing takes about the same time as the song's length, and files are never stored."
   },
   "mid": {
     "format": "Accepted formats: MP3, M4A, AAC, WAV, FLAC or AIFF",

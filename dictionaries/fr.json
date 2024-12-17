@@ -1,9 +1,10 @@
 {
   "top": {
-    "headLine": "Extrayez les paroles de n'importe quelle chanson !",
-    "main1": "Sélectionne ton fichier audio et attends que le traitement soit terminé.",
-    "main2": "Compatible avec les chansons dans toutes les langues. Les résultats peuvent varier à chaque essai.",
-    "main3": "Actuellement, cela prend à peu près la même durée que la chanson."
+    "headLine": "Extrayez les paroles de n'importe quelle chanson, dans n'importe quelle langue !",
+    "main1": "Téléchargez votre fichier audio et nous extrairons les paroles pour vous.",
+    "main2": "Compatible avec la musique du monde entier et prend en charge la détection automatique des langues.",
+    "main3": "Les résultats peuvent varier à chaque fois - découvrez quelque chose de nouveau à chaque essai !",
+    "main4": "Le traitement prend environ la durée de la chanson, et vos fichiers ne sont jamais stockés."
   },
   "mid": {
     "format": "Formats acceptés : MP3, M4A, AAC, WAV, FLAC ou AIFF",
